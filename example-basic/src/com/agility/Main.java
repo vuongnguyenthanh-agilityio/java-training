@@ -1,8 +1,9 @@
 package com.agility;
 
+import java.util.Date;
 import java.util.List;
-
 public class Main {
+    enum Season { SPRING, SUMMER, AUTUMN, WINTER }
 
     public static  void exampleFor() {
         List<List<String>> listOfLists = List.of(
@@ -39,5 +40,8 @@ public class Main {
         ((Product) product).setName("New Phone");
         System.out.println("Quantity: " + ((Product) product).getName() + ":" + product.getQuantity());
         System.out.println("GET: " + product.get());
+        System.out.println("IProduct: " +  IProduct.someMethod());
+        System.out.println("Enum: "+ Season.SPRING.name());
+
     }
 }
