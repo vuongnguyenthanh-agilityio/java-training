@@ -1,47 +1,38 @@
 package com.agility;
 
-import java.util.Date;
-import java.util.List;
+import com.agility.chapter5.FileExample;
+import com.agility.exception.ExampleBasic;
+
+import java.io.IOException;
+
 public class Main {
-    enum Season { SPRING, SUMMER, AUTUMN, WINTER }
 
-    public static  void exampleFor() {
-        List<List<String>> listOfLists = List.of(
-                List.of("24", "16", "1", "2", "1"),
-                List.of("43", "42", "31", "3", "3"),
-                List.of("24", "22", "31", "2", "13")
-        );
-
-        String found = null;
-        exit: for(List<String> l: listOfLists){
-            for (String s: l){
-                System.out.println(s + " ");
-                if(s.contains("3")){
-                    found = s;
-                    break exit;
-                } }
-        }
-
-        String checked = "";
-        cont: for(List<String> l: listOfLists){
-            for (String s: l){
-                System.out.println(s + " ");
-                if(s.contains("3")){
-                    continue ;
-                }
-                checked += s + " ";
-            }
-        }
-        System.out.println("Found " + found);
-        System.out.println("checked " + checked);
+  public static void main(String[] args) {
+//    Example for exception
+    ExampleBasic exam = new ExampleBasic();
+    boolean test = exam.isNegativeNumber(10);
+    try {
+      float result2 = exam.divideTwoNumber(12, 0);
+      exam.aMethod(false);
+    } catch (RuntimeException ex) {
+      System.out.println("Error: "+ ex.getMessage());
+      ex.printStackTrace();
+    } catch (IOException ex) {
+      ex.printStackTrace();
+    } catch (Exception ex) {
+      ex.printStackTrace();
     }
-    public static void main(String[] args) {
-        IProduct product = new Product("Phone", "This is Phone");
-        ((Product) product).setName("New Phone");
-        System.out.println("Quantity: " + ((Product) product).getName() + ":" + product.getQuantity());
-        System.out.println("GET: " + product.get());
-        System.out.println("IProduct: " +  IProduct.someMethod());
-        System.out.println("Enum: "+ Season.SPRING.name());
 
-    }
+    // Example for String
+//    ExampleString.testCompareString();
+
+    // Example File manager
+    FileExample fileExample = new FileExample("sources/");
+    fileExample.createFile("hello.txt");
+    fileExample.writeFile("hello.txt", "Write some text in a file");
+    String textResult = fileExample.readFile("hello.txt");
+    System.out.println("textResult: " + textResult);
+  }
+
+
 }
