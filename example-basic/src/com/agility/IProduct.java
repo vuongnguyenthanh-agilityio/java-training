@@ -15,3 +15,7 @@ public interface IProduct {
     return "abc";
   }
 }
+
+interface ITestProduct extends IProduct {
+
+}

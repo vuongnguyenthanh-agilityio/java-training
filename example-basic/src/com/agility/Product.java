@@ -1,5 +1,7 @@
 package com.agility;
 
+import java.util.Objects;
+
 public class Product implements IProduct {
   private String name;
   private String description;
@@ -33,7 +35,20 @@ public class Product implements IProduct {
 
   @Override
   public void add() {
+  }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Product product = (Product) o;
+    return name.equals(product.name) &&
+        description.equals(product.description);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(name, description);
   }
 }
 
