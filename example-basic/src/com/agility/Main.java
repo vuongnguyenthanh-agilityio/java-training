@@ -5,6 +5,10 @@ import com.agility.chapter6.CollectionExample;
 import com.agility.exception.ExampleBasic;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class Main {
   /**
@@ -40,22 +44,15 @@ public class Main {
   private static void testCollection() {
     CollectionExample collectionExample = new CollectionExample();
 //    collectionExample.testInitialize();
-    collectionExample.testMethod();
-  }
-
-  private static void testCompareObject() {
-    Product product1 = new Product("Test1", "1");
-    Product product2 = new Product("Test1", "1");
-    System.out.println("hashCode 1: "+ product1.hashCode());
-    System.out.println("hashCode 2: "+ product2.hashCode());
-    System.out.println("Equals: "+ product2.equals(product1));
+//    collectionExample.testMethod();
+//    collectionExample.testCompare();
+    collectionExample.testCollectionClass();
   }
 
   public static void main(String[] args) {
 //    testException();
 //    testFileManager();
-//    testCollection();
-    testCompareObject();
+    testCollection();
   }
 
 

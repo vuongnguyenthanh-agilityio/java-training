@@ -2,10 +2,10 @@ package com.agility;
 
 import java.util.Objects;
 
-public class Product implements IProduct {
+public class Product implements IProduct, Cloneable {
   private String name;
   private String description;
-  protected int quantity;
+  private int quantity;
 
   public Product(String name, String description) {
     this.name = name;
@@ -18,6 +18,10 @@ public class Product implements IProduct {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+  public void setQuantity(int quantity) {
+    this.quantity = quantity;
   }
 
   private String getDescription() {
@@ -50,36 +54,20 @@ public class Product implements IProduct {
   public int hashCode() {
     return Objects.hash(name, description);
   }
-}
 
-class PhoneProduct extends Product {
-
-  public PhoneProduct(String name, String description) {
-    super(name, description);
+  @Override
+  public String toString() {
+    return "Product{" +
+        "name='" + name + '\'' +
+        ", description='" + description + '\'' +
+        ", quantity=" + quantity +
+        '}';
   }
 
   @Override
-  public String getName() {
-    return super.getName();
-  }
+  public Product clone() throws CloneNotSupportedException {
+    Product clone = (Product) super.clone();
 
-  @Override
-  public void setName(String name) {
-    super.setName(name);
-  }
-
-  public void setQantity(int quantity) {
-    this.quantity = quantity;
-  }
-}
-
-class Iphone extends PhoneProduct {
-
-  public Iphone(String name, String description) {
-    super(name, description);
-  }
-
-  public int getQuantity() {
-    return this.quantity;
+    return clone;
   }
 }
