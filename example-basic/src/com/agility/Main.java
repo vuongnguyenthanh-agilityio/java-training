@@ -2,6 +2,7 @@ package com.agility;
 
 import com.agility.chapter5.FileExample;
 import com.agility.chapter6.CollectionExample;
+import com.agility.chapter8.ThreadExample;
 import com.agility.exception.ExampleBasic;
 
 import java.io.IOException;
@@ -49,10 +50,17 @@ public class Main {
     collectionExample.testCollectionClass();
   }
 
+  private static void testThread() {
+    ThreadExample threadExample = new ThreadExample();
+//    threadExample.testRunnable();
+    threadExample.testGetResult();
+  }
+
   public static void main(String[] args) {
 //    testException();
 //    testFileManager();
-    testCollection();
+//    testCollection();
+    testThread();
   }
 
 
