@@ -1,5 +1,4 @@
 package com.agility.springbootexample.product;
-
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -8,6 +7,7 @@ import java.util.List;
 @Component
 public class ProductDaoService {
   private static List<Product> products = new ArrayList<>();
+  private static int counter = 2;
 
   static {
     products.add(new Product(1,"Iphone 5", "A", 15));
@@ -25,6 +25,16 @@ public class ProductDaoService {
         .orElse(null);
 
     System.out.println(product);
+
+    return product;
+  }
+
+  protected Product createProduct(Product product) {
+    if (product.getId() == 0) {
+      product.setId(++counter);
+    }
+    products.add(product);
+
     return product;
   }
 
