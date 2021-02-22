@@ -1,9 +1,11 @@
 package com.agility.springbootexample.product;
 
 import com.agility.springbootexample.validators.ValidationUtil;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 @Component
+@Primary
 public class ProductValidation implements IProductValidation {
   @Override
   public void validate(Product product) {

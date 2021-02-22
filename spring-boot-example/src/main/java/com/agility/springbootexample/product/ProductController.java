@@ -1,5 +1,6 @@
 package com.agility.springbootexample.product;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -9,13 +10,10 @@ import java.util.List;
 
 @RestController
 public class ProductController {
-  private final ProductDaoService productDaoService;
-  private final ProductValidation productValidation;
-
-  public ProductController(ProductDaoService productDaoService, ProductValidation productValidation) {
-    this.productDaoService = productDaoService;
-    this.productValidation = productValidation;
-  }
+  @Autowired
+  private ProductDaoService productDaoService;
+  @Autowired
+  private IProductValidation productValidation;
 
   @GetMapping(path="/products")
   public List<Product> getProducts() {
