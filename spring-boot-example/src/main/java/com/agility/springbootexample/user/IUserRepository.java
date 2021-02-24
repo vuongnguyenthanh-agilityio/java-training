@@ -1,10 +1,9 @@
 package com.agility.springbootexample.user;
 
+import org.springframework.data.mongodb.repository.MongoRepository;
+
 import java.util.List;
 
-public interface IUserRepository {
-  List<User> getAll();
-  User getUser(int id);
-  User updateUser(User user);
-  User deleteUser(String id);
+public interface IUserRepository extends MongoRepository<User, String> {
+  List<User> findByNameContaining(String name);
 }

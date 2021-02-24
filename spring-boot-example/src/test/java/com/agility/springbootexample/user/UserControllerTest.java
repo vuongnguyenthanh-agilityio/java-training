@@ -17,6 +17,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.mockito.BDDMockito.given;
 
@@ -39,10 +40,10 @@ public class UserControllerTest {
   @Test
   public void testGetAllUsers() throws Exception {
     List<User> users = List.of(
-        new User(1, "Vuong", "a", "0"),
-        new User(2, "Vuong1", "a1", "01")
+        new User("1", "Vuong", "a", "0"),
+        new User("2", "Vuong1", "a1", "01")
     );
-    given(userService.getAll()).willReturn(users);
+    given(userService.getAll(null)).willReturn(users);
     MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.get(
         "/users");
     MockHttpServletResponse response = mvc.perform(builder)
@@ -54,10 +55,11 @@ public class UserControllerTest {
 
   @Test
   public void testGetUser() throws Exception {
-    User user = new User(1, "Vuong", "a", "0");
-    User user1 = new User(1, "Vuong1", "a", "0");
+    User user = new User("1", "Vuong", "a", "0");
+    User user1 = new User("1", "Vuong1", "a", "0");
+    Optional<User> userData = Optional.of(user);
     given(userService.getUser(1))
-        .willReturn(user);
+        .willReturn(userData);
 
     MockHttpServletResponse response = mvc.perform(MockMvcRequestBuilders.get("/users/1"))
         .andReturn()

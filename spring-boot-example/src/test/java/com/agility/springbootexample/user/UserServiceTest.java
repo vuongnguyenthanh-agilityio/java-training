@@ -35,9 +35,9 @@ public class UserServiceTest {
 
   @BeforeEach
   public void setUp() {
-    Mockito.when(userRepository.getAll())
+    Mockito.when(userRepository.findAll())
         .thenReturn(IntStream.range(0, 5)
-        .mapToObj(i -> new User(i, "Vuong " + i, "Vuong@gmail.com", "9999"+i))
+        .mapToObj(i -> new User(""+i, "Vuong " + i, "Vuong@gmail.com", "9999"+i))
         .collect(Collectors.toList()));
   }
 

@@ -1,23 +1,32 @@
 package com.agility.springbootexample.user;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.Date;
+import java.util.Objects;
+
+@Document(collection = "user")
 public class User {
+  @Id
+  private String id;
   private String name;
   private String email;
   private String phone;
-  private int id;
+  private Date createDate = new Date();
 
-  public User(int id, String name, String email, String phone) {
+  public User(String id, String name, String email, String phone) {
     this.name = name;
     this.email = email;
     this.phone = phone;
     this.id = id;
   }
 
-  public int getId() {
+  public String getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(String id) {
     this.id = id;
   }
 
@@ -44,4 +53,20 @@ public class User {
   public void setPhone(String phone) {
     this.phone = phone;
   }
+
+  public Date getCreateDate() {
+    return createDate;
+  }
+
+  @Override
+  public String toString() {
+    return "User{" +
+        "id=" + id +
+        ", name='" + name + '\'' +
+        ", email='" + email + '\'' +
+        ", phone='" + phone + '\'' +
+        ", createDate=" + createDate +
+        '}';
+  }
+
 }
