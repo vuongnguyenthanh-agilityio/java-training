@@ -4,6 +4,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;
 
-public interface IcategoryRepository extends MongoRepository<Category, String> {
+public interface ICategoryRepository extends MongoRepository<Category, String> {
   List<Category> findByIdIn(List<String> ids);
 }

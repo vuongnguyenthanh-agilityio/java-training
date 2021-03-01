@@ -15,7 +15,7 @@ public class CategoryController {
   private final Logger LOG = LoggerFactory.getLogger(getClass());
 
   @Autowired
-  private IcategoryRepository icategoryRepository;
+  private ICategoryRepository icategoryRepository;
 
   @GetMapping(path = "/categories")
   public ResponseEntity<List<Category>> getAll() {
