@@ -19,7 +19,9 @@ import java.util.List;
 @Accessors(chain = true)
 @Document(collection = "Products")
 @CompoundIndexes({
-    @CompoundIndex(name="category_status", def="{'category.id' : 1, 'status' : 1 }")
+    @CompoundIndex(name="category_status", def="{'category.id' : 1, 'status' : 1 }"),
+    @CompoundIndex(name="user_status", def="{'user.id' : 1, 'status' : 1 }"),
+    @CompoundIndex(name="shipping-service", def="{'shippingServices.id' : 1 }")
 })
 public class Product extends Entity {
   @TextIndexed

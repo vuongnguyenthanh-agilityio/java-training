@@ -3,8 +3,9 @@ package com.agility.marketservice;
 import com.agility.marketservice.model.Role;
 import com.agility.marketservice.model.User;
 import com.agility.marketservice.model.UserRoles;
-import com.agility.marketservice.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.agility.marketservice.repository.IRoleRepository;
+import com.agility.marketservice.repository.IUserRepository;
+import com.agility.marketservice.repository.InitializeDatabase;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,19 +17,16 @@ public class MarketServiceApplication {
 		SpringApplication.run(MarketServiceApplication.class, args);
 	}
 
+	/**
+	 * Handle init database
+	 */
 	@Bean
-	CommandLineRunner init(UserRepository userRepository) {
+	CommandLineRunner init(InitializeDatabase initializeDatabase) {
 		return args -> {
-			User user = new User();
-			Role role = new Role();
-			System.out.println("CommandLineRunner VUONG");
-
-			userRepository.save(
-					user
-							.setEmail("vuong@gmail.com")
-							.setFullName("Vuong")
-//							.setRole(role.setCode(UserRoles.ADMIN).setName("Admin"))
-			);
+			initializeDatabase.initRoles();
+			initializeDatabase.initUsers();
+			initializeDatabase.initCategories();
+			initializeDatabase.initShippingService();
 		};
 	}
 }

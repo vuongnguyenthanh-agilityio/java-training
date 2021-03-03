@@ -1,5 +1,5 @@
 # our base build image
-FROM maven:3.6.0-jdk-8 as maven
+FROM maven:3.6.3-jdk-11 as maven
 
 # copy the project files
 COPY ./pom.xml ./pom.xml
@@ -14,13 +14,13 @@ COPY ./src ./src
 RUN mvn package -DskipTests
 
 # our final base image
-FROM openjdk:8-jre-alpine
+FROM adoptopenjdk/openjdk11:jre-11.0.6_10-alpine
 
 # set deployment directory
 WORKDIR /market-service
 
 # copy over the built artifact from the maven image
-COPY --from=maven target/springboot-starterkit-1.0.jar ./
+COPY --from=maven target/market-service-1.0.jar ./
 
 # set the startup command to run your binary
-CMD ["java", "-jar", "./springboot-starterkit-1.0.jar"]
+CMD ["java", "-jar", "./market-service-1.0.jar"]

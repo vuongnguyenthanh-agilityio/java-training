@@ -1,7 +1,7 @@
 package com.agility.springbootexample.user;
 
 import com.agility.springbootexample.category.Category;
-import com.agility.springbootexample.category.IcategoryRepository;
+import com.agility.springbootexample.category.ICategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ public class UserService {
   @Autowired
   private IUserRepository userRepository;
   @Autowired
-  private IcategoryRepository icategoryRepository;
+  private ICategoryRepository icategoryRepository;
 
   public List<User> getAll(String category) {
     List<User> users = new ArrayList<>();
