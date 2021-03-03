@@ -3,6 +3,7 @@ package com.agility.marketservice.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 import org.springframework.data.mongodb.core.index.IndexDirection;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -18,6 +19,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @Accessors(chain = true)
 @Document(collection = "Users")
+@ToString
 public class User extends Entity {
   private String fullName;
   @Indexed(unique = true, direction = IndexDirection.DESCENDING)
