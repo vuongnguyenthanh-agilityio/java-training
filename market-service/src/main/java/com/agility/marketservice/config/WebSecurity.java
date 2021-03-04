@@ -2,6 +2,7 @@ package com.agility.marketservice.config;
 
 import com.agility.marketservice.security.CustomUserDetailService;
 import com.agility.marketservice.security.JWTAuthenticationFilter;
+import com.agility.marketservice.security.JWTAuthorizationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,8 +11,11 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import javax.servlet.http.HttpServletResponse;
 
 @EnableWebSecurity
 @Configuration
@@ -32,8 +36,16 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         .antMatcher("/api/**")
         .authorizeRequests()
         .antMatchers(HttpMethod.POST, "/api/auth").permitAll()
+        .anyRequest()
+        .authenticated()
         .and()
-        .addFilter(new JWTAuthenticationFilter(authenticationManager()));
+        .exceptionHandling()
+        .authenticationEntryPoint((req, rsp, e) -> rsp.sendError(HttpServletResponse.SC_UNAUTHORIZED))
+        .and()
+        .addFilter(new JWTAuthenticationFilter(authenticationManager()))
+        .addFilter(new JWTAuthorizationFilter(authenticationManager()))
+        // this disables session creation on Spring Security
+        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
   }
 
   @Override

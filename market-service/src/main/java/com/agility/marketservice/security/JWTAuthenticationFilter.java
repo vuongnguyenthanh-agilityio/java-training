@@ -2,6 +2,7 @@ package com.agility.marketservice.security;
 
 import com.agility.marketservice.model.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -19,13 +20,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Vuong Nguyen
  */
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
   private AuthenticationManager authenticationManager;
-
   public JWTAuthenticationFilter(AuthenticationManager authenticationManager) {
     this.authenticationManager = authenticationManager;
     this.setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher("/api/auth", "POST"));
@@ -36,7 +37,6 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                               HttpServletResponse response) throws AuthenticationException {
     try {
       User user = new ObjectMapper().readValue(request.getInputStream(), User.class);
-      System.out.println("USER: " + user.toString());
 
       return authenticationManager.authenticate(
           new UsernamePasswordAuthenticationToken(
@@ -58,12 +58,14 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                           Authentication authResult) throws IOException, ServletException {
     org.springframework.security.core.userdetails.User user = (org.springframework.security.core.userdetails.User) authResult.getPrincipal();
     String login = user.getUsername();
-    System.out.println("login: " + login);
     if (login != null && login.length() > 0) {
       Claims claims = Jwts.claims().setSubject(login);
       byte[] signingKey = SecurityConstants.JWT_SECRET.getBytes();
-
+      List<String> roles = new ArrayList<>();
+      user.getAuthorities().stream().forEach(authority -> roles.add(authority.getAuthority()));
+      claims.put(SecurityConstants.ROLES, roles);
       String token = token = Jwts.builder()
+          .setClaims(claims)
           .setIssuedAt(new Date())
           .setExpiration(new Date(System.currentTimeMillis() + SecurityConstants.EXPIRATION_TIME))
           .signWith(SignatureAlgorithm.HS512, signingKey)

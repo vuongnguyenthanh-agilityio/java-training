@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/users")
+//@RequestMapping("/api/users")
 public class UserController {
   @Autowired
   private IUserRepository userRepository;
-  @GetMapping(path = "/")
+  @GetMapping(path = "/api/users")
   public ResponseEntity<List<User>> getAll() {
     List<User> user = userRepository.findAll();
 
