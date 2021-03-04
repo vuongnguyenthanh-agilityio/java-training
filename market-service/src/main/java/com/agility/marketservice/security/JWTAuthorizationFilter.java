@@ -1,8 +1,12 @@
 package com.agility.marketservice.security;
 
+import com.agility.marketservice.exception.ExceptionType;
+import com.agility.marketservice.exception.MarketException;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -33,8 +37,13 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
       return;
     }
 
-    UsernamePasswordAuthenticationToken authentication = getAuthentication(token);
-    SecurityContextHolder.getContext().setAuthentication(authentication);
+    try {
+      UsernamePasswordAuthenticationToken authentication = getAuthentication(token);
+      SecurityContextHolder.getContext().setAuthentication(authentication);
+    } catch (Exception ex) {
+      request.setAttribute("exception", ex);
+    }
+
     chain.doFilter(request, response);
   }
 

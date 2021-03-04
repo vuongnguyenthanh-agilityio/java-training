@@ -1,5 +1,6 @@
 package com.agility.marketservice.config;
 
+import com.agility.marketservice.security.CustomAuthenticationFailureHandler;
 import com.agility.marketservice.security.CustomUserDetailService;
 import com.agility.marketservice.security.JWTAuthenticationFilter;
 import com.agility.marketservice.security.JWTAuthorizationFilter;
@@ -12,8 +13,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -24,9 +25,15 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
   private BCryptPasswordEncoder bCryptPasswordEncoder;
   @Autowired
   private CustomUserDetailService userDetailsService;
+
   @Bean
   public BCryptPasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
+  }
+
+  @Bean
+  public AuthenticationFailureHandler authenticationFailureHandler() {
+    return new CustomAuthenticationFailureHandler();
   }
 
   @Override

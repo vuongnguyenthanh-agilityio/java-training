@@ -1,7 +1,7 @@
 package com.agility.marketservice.controller;
 
-import com.agility.marketservice.model.User;
-import com.agility.marketservice.repository.IUserRepository;
+import com.agility.marketservice.model.ShippingService;
+import com.agility.marketservice.repository.IShippingServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,13 +16,16 @@ import java.util.List;
  * TODO: This class only gets data for testing. It doesn't include in the practice scope
  */
 @RestController
-public class UserController {
-  @Autowired
-  private IUserRepository userRepository;
-  @GetMapping(path = "/api/users")
-  public ResponseEntity<List<User>> getAll() {
-    List<User> user = userRepository.findAll();
+public class ShippingServiceController {
 
-    return new ResponseEntity<>(user, HttpStatus.OK);
+  @Autowired
+  private IShippingServiceRepository shippingServiceRepository;
+
+  @GetMapping("/api/shipping-services")
+  public ResponseEntity<List<ShippingService>> getCategories() {
+    List<ShippingService> shippingServices = shippingServiceRepository.findAll();
+
+    return new ResponseEntity<>(shippingServices, HttpStatus.OK);
   }
 }
+
