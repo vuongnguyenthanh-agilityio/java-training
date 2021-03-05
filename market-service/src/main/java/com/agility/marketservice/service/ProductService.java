@@ -23,26 +23,113 @@ public class ProductService implements IProductService {
   @Autowired
   private ICategoryRepository iCategoryRepository;
 
+  /**
+   * Handle create product into Database
+   *
+   * @param productRequest
+   * @return
+   */
   @Override
   public ProductDto createProduct(ProductRequest productRequest) {
-    Optional<Category> categoryData = iCategoryRepository.findById(productRequest.getCategoryId());
-    if (!categoryData.isPresent()) {
-      throw MarketException.throwException(
-          ExceptionType.NOT_FOUND,
-          "The category id: " + productRequest.getCategoryId() + " not found.",
-          null
-      );
-    }
+    Category category = getCategory(productRequest.getCategoryId());
     Product product = new Product()
         .setName(productRequest.getName())
         .setStatus(ProductStatus.PENDING)
-        .setCategory(categoryData.get())
+        .setCategory(category)
+        .setDescription(productRequest.getDescription())
+        .setPrice(productRequest.getPrice())
+        .setShippingServices(productRequest.getShippingServices());
+
+    Product newProduct = iProductRepository.insert(product);
+
+    return Mapper.convertProductDto(newProduct);
+  }
+
+  /**
+   * Handle update product into Database
+   *
+   * @param id
+   * @param productRequest
+   * @return
+   */
+  @Override
+  public ProductDto updateProduct(String id, ProductRequest productRequest) {
+    Product product = getProduct(id);
+    Category category = getCategory(productRequest.getCategoryId());
+    product.setName(productRequest.getName())
+        .setStatus(ProductStatus.PENDING)
+        .setCategory(category)
         .setDescription(productRequest.getDescription())
         .setPrice(productRequest.getPrice())
         .setShippingServices(productRequest.getShippingServices());
 
     Product newProduct = iProductRepository.save(product);
-    ProductDto productDto = Mapper.convertProductDto(newProduct);
-    return productDto;
+
+    return Mapper.convertProductDto(newProduct);
+  }
+
+  /**
+   * Handle delete a product
+   *
+   * @param id
+   * @return
+   */
+  @Override
+  public ProductDto deleteProduct(String id) {
+    Product product = getProduct(id);
+    iProductRepository.delete(product);
+
+    return Mapper.convertProductDto(product);
+  }
+
+  /**
+   * Handle get a product by id
+   *
+   * @param id
+   * @return
+   */
+  @Override
+  public ProductDto getProductById(String id) {
+    Product product = getProduct(id);
+
+    return  Mapper.convertProductDto(product);
+  }
+
+  /**
+   * Handle get a product
+   *
+   * @param id
+   * @return
+   */
+  private Product getProduct(String id) {
+    Optional<Product> productOp = iProductRepository.findById(id);
+    if (!productOp.isPresent()) {
+      throw MarketException.throwException(
+          ExceptionType.NOT_FOUND,
+          "Product id: " + id + " not found.",
+          null
+      );
+    }
+
+    return productOp.get();
+  }
+
+  /**
+   * Handle get category from database
+   *
+   * @param id
+   * @return
+   */
+  private Category getCategory(String id) {
+    Optional<Category> categoryData = iCategoryRepository.findById(id);
+    if (!categoryData.isPresent()) {
+      throw MarketException.throwException(
+          ExceptionType.NOT_FOUND,
+          "The category id: " + id + " not found.",
+          null
+      );
+    }
+
+    return categoryData.get();
   }
 }

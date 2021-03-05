@@ -5,9 +5,11 @@ import com.agility.marketservice.model.ProductStatus;
 import com.agility.marketservice.model.User;
 import lombok.Data;
 import lombok.experimental.Accessors;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -26,4 +28,6 @@ public class ProductDto {
   private List<String> shippingServices;
   private UserDto createdBy;
   private UserDto lastModifiedBy;
+  private Date createdAt;
+  private Date updatedAt;
 }
