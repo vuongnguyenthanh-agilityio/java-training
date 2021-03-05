@@ -1,9 +1,12 @@
 package com.agility.marketservice.model;
 
+import com.agility.marketservice.dto.UserDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.mongodb.core.index.*;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -20,7 +23,7 @@ import java.util.List;
 @Document(collection = "Products")
 @CompoundIndexes({
     @CompoundIndex(name="category_status", def="{'category.id' : 1, 'status' : 1 }"),
-    @CompoundIndex(name="user_status", def="{'user.id' : 1, 'status' : 1 }"),
+    @CompoundIndex(name="user_status", def="{'createdBy.id' : 1, 'status' : 1 }"),
     @CompoundIndex(name="shipping-service", def="{'shippingServices.id' : 1 }")
 })
 public class Product extends Entity {
@@ -31,8 +34,11 @@ public class Product extends Entity {
   private ProductStatus status;
   private double price;
   private String description;
-  @DBRef
   private List<String> shippingServices;
   @DBRef
+  @CreatedBy
   private User createdBy;
+  @DBRef
+  @LastModifiedBy
+  private User lastModifiedBy;
 }

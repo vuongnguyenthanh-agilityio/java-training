@@ -1,14 +1,10 @@
 package com.agility.marketservice.dto;
 
-import com.agility.marketservice.model.Role;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
-import org.springframework.data.mongodb.core.index.IndexDirection;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 
 /**
  * Create by Vuong Nguyen
@@ -19,8 +15,8 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 @NoArgsConstructor
 @ToString
 public class UserDto {
+  private String id;
   private String fullName;
   private String email;
-  private String password;
-  private Role role;
+  private RoleDto role;
 }

@@ -17,6 +17,7 @@ import java.util.List;
 @Data
 @Accessors(chain = true)
 public class ProductDto {
+  private String id;
   private String name;
   private Category category;
   private ProductStatus status;
@@ -24,4 +25,5 @@ public class ProductDto {
   private String description;
   private List<String> shippingServices;
   private UserDto createdBy;
+  private UserDto lastModifiedBy;
 }
