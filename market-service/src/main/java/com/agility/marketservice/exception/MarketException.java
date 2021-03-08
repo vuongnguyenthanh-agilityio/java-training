@@ -7,6 +7,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @Component
 public class MarketException {
 
+  public static RuntimeException throwException(ExceptionType exceptionType) {
+    return throwException(exceptionType, "", null);
+  }
+
+  public static RuntimeException throwException(ExceptionType exceptionType, String message) {
+    return throwException(exceptionType, message, null);
+  }
+
   public static RuntimeException throwException(ExceptionType exceptionType, String message, Throwable error) {
     switch (exceptionType) {
       case BAD_REQUEST:

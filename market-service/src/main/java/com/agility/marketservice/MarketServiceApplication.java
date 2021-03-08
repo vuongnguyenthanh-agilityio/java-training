@@ -27,9 +27,4 @@ public class MarketServiceApplication {
 			initializeDatabase.initShippingService();
 		};
 	}
-
-	@Bean
-	public ModelMapper modelMapper() {
-		return new ModelMapper();
-	}
 }

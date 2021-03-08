@@ -12,18 +12,7 @@ import javax.annotation.PostConstruct;
 
 @Component
 public class Mapper {
-  private static ModelMapper modelMapper;
-  @Autowired
-  private ModelMapper autoModelMapper;
-
-  /**
-   * The idea here is to hand over a bean to a static field after bean is configured by spring.
-   * Only test life cycle Bean
-   */
-  @PostConstruct
-  public void init() {
-    Mapper.modelMapper = autoModelMapper;
-  }
+  private static ModelMapper modelMapper = new ModelMapper();
 
   /**
    * Convert User entity to UserDto

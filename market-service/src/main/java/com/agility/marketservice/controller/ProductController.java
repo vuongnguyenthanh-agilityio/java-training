@@ -62,10 +62,6 @@ public class ProductController {
                                                    @RequestBody @Valid ProductRequest product) {
     LOG.info(id);
     LOG.info(product.toString());
-//    if (errors.hasErrors()) {
-//      return new ResponseEntity(errors.getAllErrors(), HttpStatus.BAD_REQUEST);
-//    }
-
     ProductDto newProduct = iProductService.updateProduct(id, product);
 
     return new ResponseEntity<>(newProduct, HttpStatus.CREATED);
