@@ -12,9 +12,12 @@ import com.agility.marketservice.repository.IProductRepository;
 import com.agility.marketservice.util.Mapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.query.TextCriteria;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductService implements IProductService {
@@ -22,6 +25,16 @@ public class ProductService implements IProductService {
   private IProductRepository iProductRepository;
   @Autowired
   private ICategoryRepository iCategoryRepository;
+
+  public List<ProductDto> searchProductByName(String name) {
+    TextCriteria criteria = TextCriteria.forDefaultLanguage().matching(name);
+    List<ProductDto> products = iProductRepository.findAllBy(criteria)
+        .stream()
+        .map(p -> Mapper.convertProductDto(p))
+        .collect(Collectors.toList());
+
+    return products;
+  }
 
   /**
    * Handle create product into Database
@@ -106,8 +119,7 @@ public class ProductService implements IProductService {
     if (!productOp.isPresent()) {
       throw MarketException.throwException(
           ExceptionType.NOT_FOUND,
-          "Product id: " + id + " not found.",
-          null
+          "Product id: " + id + " not found."
       );
     }
 
@@ -125,8 +137,7 @@ public class ProductService implements IProductService {
     if (!categoryData.isPresent()) {
       throw MarketException.throwException(
           ExceptionType.NOT_FOUND,
-          "The category id: " + id + " not found.",
-          null
+          "The category id: " + id + " not found."
       );
     }
 

@@ -100,11 +100,15 @@ public class ProductController {
    * @return
    */
   @GetMapping(path = "products")
-  public ResponseEntity<List<ProductDto>> getAll() {
-    List<Product> products = iProductRepository.findAll();
-    List<ProductDto> dtoProducts = products.stream()
-        .map(p -> Mapper.convertProductDto(p))
-        .collect(Collectors.toList());
+  public ResponseEntity<List<ProductDto>> getAll(
+      @RequestParam(value = "page", defaultValue = "0") int page,
+      @RequestParam(value = "size", defaultValue = "20") int size,
+      @RequestParam(value = "search", required = false) String search,
+      @RequestParam(value = "filterOr", required = false) String filterOr,
+      @RequestParam(value = "filterAnd", required = false) String filterAnd
+  ) {
+    LOG.info(search);
+    List<ProductDto> dtoProducts = iProductService.searchProductByName(search);
 
     return new ResponseEntity<>(dtoProducts, HttpStatus.OK);
   }

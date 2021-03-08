@@ -18,6 +18,7 @@ public class UserAuditing implements AuditorAware<User> {
   @Override
   public Optional<User> getCurrentAuditor() {
     User user = iUserService.getCurrentUser();
+    if (user == null) return null;
     // Handle convert twice to remove properties unused
     UserDto userDto = Mapper.convertUserDto(user);
     return Optional.of(Mapper.convertUserEntity(userDto));

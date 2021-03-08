@@ -13,6 +13,8 @@ public class UserService implements IUserService {
 
   @Override
   public User getCurrentUser() {
+    if (SecurityContextHolder.getContext().getAuthentication() == null) return null;
+
     String email = SecurityContextHolder.getContext().getAuthentication().getName();
     if (email == null) return null;
 
