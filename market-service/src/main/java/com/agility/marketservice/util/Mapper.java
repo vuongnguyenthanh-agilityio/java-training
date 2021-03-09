@@ -5,12 +5,10 @@ import com.agility.marketservice.dto.UserDto;
 import com.agility.marketservice.model.Product;
 import com.agility.marketservice.model.User;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
+import java.util.List;
+import java.util.stream.Collectors;
 
-@Component
 public class Mapper {
   private static ModelMapper modelMapper = new ModelMapper();
 
@@ -42,5 +40,19 @@ public class Mapper {
    */
   public static ProductDto convertProductDto(Product product) {
     return modelMapper.map(product, ProductDto.class);
+  }
+
+  /**
+   * Convert Product entity to ProductDto
+   *
+   * @param products
+   * @return
+   */
+  public static List<ProductDto> convertProductList(List<Product> products) {
+    List<ProductDto> dtoProducts = products.stream()
+        .map(u -> Mapper.convertProductDto(u))
+        .collect(Collectors.toList());
+
+    return dtoProducts;
   }
 }

@@ -1,26 +1,20 @@
 package com.agility.marketservice.controller;
 
 import com.agility.marketservice.controller.request.ProductRequest;
+import com.agility.marketservice.controller.response.PageResponse;
 import com.agility.marketservice.dto.ProductDto;
-import com.agility.marketservice.dto.UserDto;
 import com.agility.marketservice.model.Product;
-import com.agility.marketservice.model.User;
-import com.agility.marketservice.repository.IProductRepository;
+import com.agility.marketservice.service.FilterBuilderService;
 import com.agility.marketservice.service.IProductService;
-import com.agility.marketservice.util.Mapper;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Created by Vuong Nguyen
@@ -31,8 +25,6 @@ public class ProductController {
   private final Logger LOG = LoggerFactory.getLogger(getClass());
   @Autowired
   private IProductService iProductService;
-  @Autowired
-  private IProductRepository iProductRepository;
 
   /**
    * POST: /api/products
@@ -100,15 +92,16 @@ public class ProductController {
    * @return
    */
   @GetMapping(path = "products")
-  public ResponseEntity<List<ProductDto>> getAll(
-      @RequestParam(value = "page", defaultValue = "0") int page,
-      @RequestParam(value = "size", defaultValue = "20") int size,
+  public ResponseEntity<PageResponse<ProductDto>> getProducts(
+      @RequestParam(value = "page", defaultValue = "" + FilterBuilderService.DEFAULT_PAGE) int page,
+      @RequestParam(value = "size", defaultValue = "" + FilterBuilderService.DEFAULT_PAGE_SIZE) int size,
       @RequestParam(value = "search", required = false) String search,
       @RequestParam(value = "filterOr", required = false) String filterOr,
-      @RequestParam(value = "filterAnd", required = false) String filterAnd
+      @RequestParam(value = "filterAnd", required = false) String filterAnd,
+      @RequestParam(value = "orders", required = false) String orders
   ) {
-    LOG.info(search);
-    List<ProductDto> dtoProducts = iProductService.searchProductByName(search);
+    LOG.info(orders);
+    PageResponse<ProductDto> dtoProducts = iProductService.getProducts(page, size, search, filterAnd, filterOr, orders);
 
     return new ResponseEntity<>(dtoProducts, HttpStatus.OK);
   }
