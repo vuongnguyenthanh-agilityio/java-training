@@ -3,7 +3,10 @@ package com.agility.marketservice.controller.request;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 /**

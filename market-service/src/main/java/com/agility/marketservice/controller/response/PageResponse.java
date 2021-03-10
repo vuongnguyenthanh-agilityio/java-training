@@ -2,7 +2,6 @@ package com.agility.marketservice.controller.response;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
@@ -17,7 +16,6 @@ public class PageResponse<T> {
   private boolean last;
   private int itemsPerPage;
   private int pageSize;
-
   private List<T> items;
 
   public void setPageResponse(Page pg, List<T> items) {

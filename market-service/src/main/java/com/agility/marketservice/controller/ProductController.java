@@ -3,14 +3,9 @@ package com.agility.marketservice.controller;
 import com.agility.marketservice.controller.request.ProductRequest;
 import com.agility.marketservice.controller.response.PageResponse;
 import com.agility.marketservice.dto.ProductDto;
-import com.agility.marketservice.exception.MarketException;
-import com.agility.marketservice.model.Product;
-import com.agility.marketservice.model.User;
 import com.agility.marketservice.service.FilterBuilderService;
 import com.agility.marketservice.service.IProductService;
 import com.agility.marketservice.service.IUserService;
-import com.agility.marketservice.util.ExceptionTypeEnum;
-import com.agility.marketservice.util.ProductStatusEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import java.util.Arrays;
 
 /**
  * Created by Vuong Nguyen
@@ -118,14 +112,19 @@ public class ProductController {
       @RequestParam(value = "orders", required = false) String orders
   ) {
     LOG.info(orders);
-    PageResponse<ProductDto> dtoProducts = iProductService.getProducts(page, size, search, filterAnd, filterOr, orders);
+    // Only get product is approved by admin
+    String newFilterAnd = "status|eq|APPROVED&";
+    if (filterAnd != null && !filterAnd.isEmpty()) {
+      newFilterAnd += filterAnd;
+    }
+    PageResponse<ProductDto> dtoProducts = iProductService.getProducts(page, size, search, newFilterAnd, filterOr, orders);
 
     return new ResponseEntity<>(dtoProducts, HttpStatus.OK);
   }
 
   /**
    * GET: /api/603f37bfbca3fc59fedbab62/products
-   * Get productsby shipping services
+   * Get products by shipping services
    *
    * @param shippingServiceId
    * @param page
@@ -134,7 +133,7 @@ public class ProductController {
    * @param orders
    * @return
    */
-  @GetMapping(path = "{shippingServiceId}/products")
+  @GetMapping(path = "shipping-services/{shippingServiceId}/products")
   public ResponseEntity<PageResponse<ProductDto>> getProductsByShipping(
       @PathVariable String shippingServiceId,
       @RequestParam(value = "page", defaultValue = "" + FilterBuilderService.DEFAULT_PAGE) int page,
@@ -145,9 +144,38 @@ public class ProductController {
     // Add filter by shipping service id and product status
     String filter = "shippingServices|eq|" + shippingServiceId;
     if (status != null && !status.isEmpty()) {
-      filter += "&status|eq|" + status;
+      filter += "&status|eq|" + status.toUpperCase();
     }
-    PageResponse<ProductDto> dtoProducts = iProductService.getProducts(page, size, null, filter, null, orders);
+    PageResponse<ProductDto> dtoProducts = iProductService.getProducts(page, size, filter, orders);
+
+    return new ResponseEntity<>(dtoProducts, HttpStatus.OK);
+  }
+
+  /**
+   * GET: /api/603f37bfbca3fc59fedbab62/products
+   * Get products by user id
+   *
+   * @param userId
+   * @param page
+   * @param size
+   * @param status
+   * @param orders
+   * @return
+   */
+  @GetMapping(path = "users/{userId}/products")
+  public ResponseEntity<PageResponse<ProductDto>> getProductsByUserId(
+      @PathVariable String userId,
+      @RequestParam(value = "page", defaultValue = "" + FilterBuilderService.DEFAULT_PAGE) int page,
+      @RequestParam(value = "size", defaultValue = "" + FilterBuilderService.DEFAULT_PAGE_SIZE) int size,
+      @RequestParam(value = "status", required = false) String status,
+      @RequestParam(value = "orders", required = false) String orders
+  ) {
+    // Add filter by shipping service id and product status
+    String filter = "createdBy.id|eq|" + userId;
+    if (status != null && !status.isEmpty()) {
+      filter += "&status|eq|" + status.toUpperCase();
+    }
+    PageResponse<ProductDto> dtoProducts = iProductService.getProducts(page, size, filter, orders);
 
     return new ResponseEntity<>(dtoProducts, HttpStatus.OK);
   }

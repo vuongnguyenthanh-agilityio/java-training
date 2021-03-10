@@ -30,6 +30,11 @@ public class ProductService implements IProductService {
   @Autowired
   private IFilterBuilderService iFilterBuilderService;
 
+  @Override
+  public PageResponse<ProductDto> getProducts(int page, int size, String filterAnd, String orders) {
+    return getProducts(page, size,null, filterAnd, null, orders);
+  }
+
   /**
    * Handle get products. Can search filter search, sort
    *

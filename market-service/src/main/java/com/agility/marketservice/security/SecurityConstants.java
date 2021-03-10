@@ -1,8 +1,5 @@
 package com.agility.marketservice.security;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
-
 public class SecurityConstants {
   public static final String JWT_SECRET = "n2r5u8x/A%D*G-KaPdSgVkYp3s6v9y$B&E(H+MbQeThWmZq4t7w!z%C*F-J@NcRf";
   public static final long EXPIRATION_TIME = 36_000_000; // 600 minutes
