@@ -88,11 +88,19 @@ public class ProductController {
   }
 
   /**
-   * TODO: Will add filter sort and pagination
+   * GET: /api/products/
+   * Get products. We can filter, search, sort dynamic field
+   *
+   * @param page
+   * @param size
+   * @param search
+   * @param filterOr
+   * @param filterAnd
+   * @param orders
    * @return
    */
   @GetMapping(path = "products")
-  public ResponseEntity<PageResponse<ProductDto>> getProducts(
+  public ResponseEntity<PageResponse<ProductDto>> getProducts( @Valid
       @RequestParam(value = "page", defaultValue = "" + FilterBuilderService.DEFAULT_PAGE) int page,
       @RequestParam(value = "size", defaultValue = "" + FilterBuilderService.DEFAULT_PAGE_SIZE) int size,
       @RequestParam(value = "search", required = false) String search,
@@ -102,6 +110,35 @@ public class ProductController {
   ) {
     LOG.info(orders);
     PageResponse<ProductDto> dtoProducts = iProductService.getProducts(page, size, search, filterAnd, filterOr, orders);
+
+    return new ResponseEntity<>(dtoProducts, HttpStatus.OK);
+  }
+
+  /**
+   * GET: /api/603f37bfbca3fc59fedbab62/products
+   * Get productsby shipping services
+   *
+   * @param shippingServiceId
+   * @param page
+   * @param size
+   * @param status
+   * @param orders
+   * @return
+   */
+  @GetMapping(path = "{shippingServiceId}/products")
+  public ResponseEntity<PageResponse<ProductDto>> getProductsByShipping(
+      @PathVariable String shippingServiceId,
+      @RequestParam(value = "page", defaultValue = "" + FilterBuilderService.DEFAULT_PAGE) int page,
+      @RequestParam(value = "size", defaultValue = "" + FilterBuilderService.DEFAULT_PAGE_SIZE) int size,
+      @RequestParam(value = "status", required = false) String status,
+      @RequestParam(value = "orders", required = false) String orders
+  ) {
+    // Add filter by shipping service id and product status
+    String filter = "shippingServices|eq|" + shippingServiceId;
+    if (status != null && !status.isEmpty()) {
+      filter += "&status|eq|" + status;
+    }
+    PageResponse<ProductDto> dtoProducts = iProductService.getProducts(page, size, null, filter, null, orders);
 
     return new ResponseEntity<>(dtoProducts, HttpStatus.OK);
   }

@@ -32,6 +32,17 @@ public class ProductService implements IProductService {
   @Autowired
   private IFilterBuilderService iFilterBuilderService;
 
+  /**
+   * Handle get products. Can search filter search, sort
+   *
+   * @param page
+   * @param size
+   * @param search
+   * @param filterAnd
+   * @param filterOr
+   * @param orders
+   * @return
+   */
   @Override
   public PageResponse<ProductDto> getProducts(int page,
                                       int size,
@@ -39,12 +50,15 @@ public class ProductService implements IProductService {
                                       String filterAnd,
                                       String filterOr,
                                       String orders) {
-
+    // Get pageable
     Pageable pageable = iFilterBuilderService.getPageable(size, page, orders);
+    // Get condition filter
     List<FilterConditionDto> andConditions = iFilterBuilderService.createFilterCondition(filterAnd);
     List<FilterConditionDto> orConditions = iFilterBuilderService.createFilterCondition(filterOr);
+    // Create query
     GenericFilterCriteriaBuilder builder = new GenericFilterCriteriaBuilder();
     Query query = builder.addCondition(andConditions, orConditions);
+    // TODO: Will update merge full-text search with the filter in one query
     Page<Product> pageProduct = null;
     if (search != null && !search.isEmpty()) {
       TextCriteria criteria = TextCriteria.forDefaultLanguage().matching(search);
