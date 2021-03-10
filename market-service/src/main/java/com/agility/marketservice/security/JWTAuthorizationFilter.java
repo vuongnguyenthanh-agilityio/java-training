@@ -1,20 +1,14 @@
 package com.agility.marketservice.security;
 
-import com.agility.marketservice.exception.ExceptionType;
-import com.agility.marketservice.exception.MarketException;
-import com.agility.marketservice.model.User;
 import com.agility.marketservice.service.IUserService;
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 import javax.servlet.FilterChain;
@@ -62,6 +56,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
     if (userName == null) return null;
 
     List<String> roles = (ArrayList<String>) claims.get(SecurityConstants.ROLES);
+    System.out.println("Roles: "+ roles.toString());
     // Then convert Roles to GrantedAuthority Object for injecting
     ArrayList<GrantedAuthority> list = new ArrayList<>();
     if (roles != null) {

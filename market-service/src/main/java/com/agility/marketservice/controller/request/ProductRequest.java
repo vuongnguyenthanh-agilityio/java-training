@@ -1,8 +1,5 @@
 package com.agility.marketservice.controller.request;
 
-import com.agility.marketservice.dto.UserDto;
-import com.agility.marketservice.model.Category;
-import com.agility.marketservice.model.ProductStatus;
 import lombok.Data;
 import lombok.experimental.Accessors;
 

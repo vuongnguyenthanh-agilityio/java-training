@@ -1,6 +1,6 @@
 package com.agility.marketservice.dto;
 
-import com.agility.marketservice.model.UserRoles;
+import com.agility.marketservice.util.UserRoleEnum;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -8,6 +8,6 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class RoleDto {
   private String id;
-  private UserRoles code;
+  private UserRoleEnum code;
   private String name;
 }

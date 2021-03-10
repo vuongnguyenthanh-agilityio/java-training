@@ -4,15 +4,12 @@ import com.agility.marketservice.controller.request.ProductRequest;
 import com.agility.marketservice.controller.response.PageResponse;
 import com.agility.marketservice.dto.FilterConditionDto;
 import com.agility.marketservice.dto.ProductDto;
-import com.agility.marketservice.exception.ExceptionType;
 import com.agility.marketservice.exception.MarketException;
 import com.agility.marketservice.model.Category;
 import com.agility.marketservice.model.Product;
-import com.agility.marketservice.model.ProductStatus;
 import com.agility.marketservice.repository.ICategoryRepository;
 import com.agility.marketservice.repository.IProductRepository;
-import com.agility.marketservice.util.GenericFilterCriteriaBuilder;
-import com.agility.marketservice.util.Mapper;
+import com.agility.marketservice.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,6 +17,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.TextCriteria;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -84,7 +82,7 @@ public class ProductService implements IProductService {
     Category category = getCategory(productRequest.getCategoryId());
     Product product = new Product()
         .setName(productRequest.getName())
-        .setStatus(ProductStatus.PENDING)
+        .setStatus(ProductStatusEnum.PENDING)
         .setCategory(category)
         .setDescription(productRequest.getDescription())
         .setPrice(productRequest.getPrice())
@@ -107,7 +105,7 @@ public class ProductService implements IProductService {
     Product product = getProduct(id);
     Category category = getCategory(productRequest.getCategoryId());
     product.setName(productRequest.getName())
-        .setStatus(ProductStatus.PENDING)
+        .setStatus(ProductStatusEnum.PENDING)
         .setCategory(category)
         .setDescription(productRequest.getDescription())
         .setPrice(productRequest.getPrice())
@@ -146,6 +144,31 @@ public class ProductService implements IProductService {
   }
 
   /**
+   * Handle update status for product
+   *
+   * @param id
+   * @param status
+   * @return
+   */
+  @Override
+  public ProductDto updateStatusProduct(String id, String status) {
+    String[] arrStatus = {ProductStatusEnum.APPROVED.name(), ProductStatusEnum.REJECTED.name()};
+    if (!ArrayUtil.isContainValue(status, arrStatus)) {
+      throw MarketException.throwException(ExceptionTypeEnum.BAD_REQUEST, "Status invalid.");
+    }
+
+    Product product = getProduct(id);
+    if (ArrayUtil.isContainValue(product.getStatus().name(), arrStatus)) {
+      throw MarketException.throwException(ExceptionTypeEnum.BAD_REQUEST, "Can not update status for this products.");
+    }
+
+    product.setStatus(ProductStatusEnum.valueOf(status.toUpperCase()));
+    Product newProduct = iProductRepository.save(product);
+
+    return Mapper.convertProductDto(newProduct);
+  }
+
+  /**
    * Handle get a product
    *
    * @param id
@@ -155,7 +178,7 @@ public class ProductService implements IProductService {
     Optional<Product> productOp = iProductRepository.findById(id);
     if (!productOp.isPresent()) {
       throw MarketException.throwException(
-          ExceptionType.NOT_FOUND,
+          ExceptionTypeEnum.NOT_FOUND,
           "Product id: " + id + " not found."
       );
     }
@@ -173,7 +196,7 @@ public class ProductService implements IProductService {
     Optional<Category> categoryData = iCategoryRepository.findById(id);
     if (!categoryData.isPresent()) {
       throw MarketException.throwException(
-          ExceptionType.NOT_FOUND,
+          ExceptionTypeEnum.NOT_FOUND,
           "The category id: " + id + " not found."
       );
     }

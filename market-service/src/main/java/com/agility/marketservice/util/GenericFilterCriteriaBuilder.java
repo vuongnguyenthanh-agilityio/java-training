@@ -1,7 +1,6 @@
 package com.agility.marketservice.util;
 
 import com.agility.marketservice.dto.FilterConditionDto;
-import com.agility.marketservice.exception.ExceptionType;
 import com.agility.marketservice.exception.MarketException;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -73,7 +72,7 @@ public class GenericFilterCriteriaBuilder {
   private Criteria buildCriteria(FilterConditionDto conditionDto) {
     Function<FilterConditionDto, Criteria> function = FILTER_CRITERIA.get(conditionDto.getFilterOperation().name());
     if (function == null) {
-      throw MarketException.throwException(ExceptionType.BAD_REQUEST, "Invalid filter condition.");
+      throw MarketException.throwException(ExceptionTypeEnum.BAD_REQUEST, "Invalid filter condition.");
     }
 
     return function.apply(conditionDto);

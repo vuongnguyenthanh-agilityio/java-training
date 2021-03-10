@@ -1,5 +1,6 @@
 package com.agility.marketservice.exception;
 
+import com.agility.marketservice.util.ExceptionTypeEnum;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -7,15 +8,15 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @Component
 public class MarketException {
 
-  public static RuntimeException throwException(ExceptionType exceptionType) {
+  public static RuntimeException throwException(ExceptionTypeEnum exceptionType) {
     return throwException(exceptionType, "", null);
   }
 
-  public static RuntimeException throwException(ExceptionType exceptionType, String message) {
+  public static RuntimeException throwException(ExceptionTypeEnum exceptionType, String message) {
     return throwException(exceptionType, message, null);
   }
 
-  public static RuntimeException throwException(ExceptionType exceptionType, String message, Throwable error) {
+  public static RuntimeException throwException(ExceptionTypeEnum exceptionType, String message, Throwable error) {
     switch (exceptionType) {
       case BAD_REQUEST:
         return new BadRequestException(message, error);

@@ -1,13 +1,9 @@
 package com.agility.marketservice.dto;
 
 import com.agility.marketservice.model.Category;
-import com.agility.marketservice.model.ProductStatus;
-import com.agility.marketservice.model.User;
+import com.agility.marketservice.util.ProductStatusEnum;
 import lombok.Data;
 import lombok.experimental.Accessors;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.mongodb.core.index.TextIndexed;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 
 import java.util.Date;
 import java.util.List;
@@ -22,7 +18,7 @@ public class ProductDto {
   private String id;
   private String name;
   private Category category;
-  private ProductStatus status;
+  private ProductStatusEnum status;
   private double price;
   private String description;
   private List<String> shippingServices;

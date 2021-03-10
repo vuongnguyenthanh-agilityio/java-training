@@ -1,6 +1,7 @@
 package com.agility.marketservice.repository;
 
 import com.agility.marketservice.model.*;
+import com.agility.marketservice.util.UserRoleEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
@@ -31,11 +32,11 @@ public class InitializeDatabase {
     }
     Role role1 = new Role()
         .setName("Admin role")
-        .setCode(UserRoles.ADMIN)
+        .setCode(UserRoleEnum.ADMIN)
         .setDescription("Full permission to manage the app");
     Role role2 = new Role()
         .setName("Customer role")
-        .setCode(UserRoles.CUSTOMER)
+        .setCode(UserRoleEnum.CUSTOMER)
         .setDescription("The customer role");
 
     return roleRepository.saveAll(List.of(role1, role2));
@@ -58,11 +59,11 @@ public class InitializeDatabase {
     }
 
     Role adminRole = roles.stream()
-        .filter(r -> UserRoles.ADMIN.equals(r.getCode()))
+        .filter(r -> UserRoleEnum.ADMIN.equals(r.getCode()))
         .findAny()
         .orElse(null);
     Role customerRole = roles.stream()
-        .filter(r -> UserRoles.CUSTOMER.equals(r.getCode()))
+        .filter(r -> UserRoleEnum.CUSTOMER.equals(r.getCode()))
         .findAny()
         .orElse(null);
     User user1 = new User()

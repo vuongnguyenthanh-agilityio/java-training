@@ -5,7 +5,7 @@ import com.agility.marketservice.dto.ProductDto;
 import com.agility.marketservice.exception.MarketException;
 import com.agility.marketservice.model.Category;
 import com.agility.marketservice.model.Product;
-import com.agility.marketservice.model.ProductStatus;
+import com.agility.marketservice.util.ProductStatusEnum;
 import com.agility.marketservice.repository.ICategoryRepository;
 import com.agility.marketservice.repository.IProductRepository;
 import org.junit.jupiter.api.Assertions;
@@ -43,7 +43,7 @@ public class ProductServiceTest {
       .setName("Product 1")
       .setCategory(category)
       .setPrice(9999)
-      .setStatus(ProductStatus.PENDING)
+      .setStatus(ProductStatusEnum.PENDING)
       .setShippingServices(List.of("123", "456"));
   private ProductRequest productRequest = new ProductRequest()
       .setName("Product 1")

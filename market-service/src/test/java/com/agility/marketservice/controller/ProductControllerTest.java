@@ -3,10 +3,10 @@ package com.agility.marketservice.controller;
 import com.agility.marketservice.controller.request.ProductRequest;
 import com.agility.marketservice.dto.ProductDto;
 import com.agility.marketservice.exception.CustomResponseException;
-import com.agility.marketservice.exception.ExceptionType;
+import com.agility.marketservice.util.ExceptionTypeEnum;
 import com.agility.marketservice.exception.MarketException;
 import com.agility.marketservice.model.Category;
-import com.agility.marketservice.model.ProductStatus;
+import com.agility.marketservice.util.ProductStatusEnum;
 import com.agility.marketservice.service.IProductService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
@@ -55,7 +55,7 @@ public class ProductControllerTest {
       .setName("Product 1")
       .setCategory(category)
       .setPrice(9999)
-      .setStatus(ProductStatus.PENDING)
+      .setStatus(ProductStatusEnum.PENDING)
       .setShippingServices(List.of("123", "456"));
   private ProductRequest productRequest = new ProductRequest()
       .setName("Product 1")
@@ -99,7 +99,7 @@ public class ProductControllerTest {
   void apiGetProductResponseNotFound() throws Exception {
     String errorMessage = "Not found";
     given(iProductService.getProductById("product_2"))
-        .willThrow(MarketException.throwException(ExceptionType.NOT_FOUND, errorMessage));
+        .willThrow(MarketException.throwException(ExceptionTypeEnum.NOT_FOUND, errorMessage));
 
     mockMvc
         .perform(MockMvcRequestBuilders.get(PATH + "/product_2"))

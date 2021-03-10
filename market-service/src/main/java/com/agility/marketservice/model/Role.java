@@ -1,5 +1,6 @@
 package com.agility.marketservice.model;
 
+import com.agility.marketservice.util.UserRoleEnum;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,7 +16,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Accessors(chain = true)
 @Document(collection = "Roles")
 public class Role extends Entity {
-  private UserRoles code;
+  private UserRoleEnum code;
   private String name;
   private String description;
 }

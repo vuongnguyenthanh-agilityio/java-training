@@ -3,18 +3,25 @@ package com.agility.marketservice.controller;
 import com.agility.marketservice.controller.request.ProductRequest;
 import com.agility.marketservice.controller.response.PageResponse;
 import com.agility.marketservice.dto.ProductDto;
+import com.agility.marketservice.exception.MarketException;
 import com.agility.marketservice.model.Product;
+import com.agility.marketservice.model.User;
 import com.agility.marketservice.service.FilterBuilderService;
 import com.agility.marketservice.service.IProductService;
+import com.agility.marketservice.service.IUserService;
+import com.agility.marketservice.util.ExceptionTypeEnum;
+import com.agility.marketservice.util.ProductStatusEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.Arrays;
 
 /**
  * Created by Vuong Nguyen
@@ -25,6 +32,8 @@ public class ProductController {
   private final Logger LOG = LoggerFactory.getLogger(getClass());
   @Autowired
   private IProductService iProductService;
+  @Autowired
+  private IUserService iUserService;
 
   /**
    * POST: /api/products
@@ -141,5 +150,16 @@ public class ProductController {
     PageResponse<ProductDto> dtoProducts = iProductService.getProducts(page, size, null, filter, null, orders);
 
     return new ResponseEntity<>(dtoProducts, HttpStatus.OK);
+  }
+
+  @PreAuthorize("hasAuthority('ADMIN')")
+  @PutMapping(path = "products/{id}/{status}")
+  public ResponseEntity<ProductDto> updateStatus(
+      @PathVariable String id,
+      @PathVariable String status
+  ) {
+    ProductDto productDto = iProductService.updateStatusProduct(id, status);
+
+    return new ResponseEntity<>(productDto, HttpStatus.CREATED);
   }
 }

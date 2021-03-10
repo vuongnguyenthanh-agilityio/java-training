@@ -1,5 +1,5 @@
-package com.agility.marketservice.exception;
+package com.agility.marketservice.util;
 
-public enum ExceptionType {
+public enum ExceptionTypeEnum {
   BAD_REQUEST, UNAUTHORIZED, FORBIDDEN, NOT_FOUND, PRECONDITION_FAILED, INTERNAL_ERROR
 }

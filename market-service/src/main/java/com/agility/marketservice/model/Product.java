@@ -1,6 +1,6 @@
 package com.agility.marketservice.model;
 
-import com.agility.marketservice.dto.UserDto;
+import com.agility.marketservice.util.ProductStatusEnum;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -31,7 +31,7 @@ public class Product extends Entity {
   private String name;
   @DBRef
   private Category category;
-  private ProductStatus status;
+  private ProductStatusEnum status;
   private double price;
   private String description;
   private List<String> shippingServices;

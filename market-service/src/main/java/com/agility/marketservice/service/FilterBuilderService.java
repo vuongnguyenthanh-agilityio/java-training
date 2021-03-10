@@ -1,7 +1,7 @@
 package com.agility.marketservice.service;
 
 import com.agility.marketservice.dto.FilterConditionDto;
-import com.agility.marketservice.exception.ExceptionType;
+import com.agility.marketservice.util.ExceptionTypeEnum;
 import com.agility.marketservice.exception.MarketException;
 import com.agility.marketservice.util.FilterOperation;
 import org.springframework.data.domain.PageRequest;
@@ -43,7 +43,7 @@ public class FilterBuilderService implements IFilterBuilderService{
 
       List<String> values = split(order, FILTER_CONDITION_DELIMITER);
       if (values.size() < 2) {
-        throw MarketException.throwException(ExceptionType.BAD_REQUEST, "Value order incorrect");
+        throw MarketException.throwException(ExceptionTypeEnum.BAD_REQUEST, "Value order incorrect");
       }
 
       String key = values.get(0);
@@ -53,10 +53,10 @@ public class FilterBuilderService implements IFilterBuilderService{
       } else if (SORT_DESC.equalsIgnoreCase(sortDirection)) {
         return  PageRequest.of(currentPage - 1, pageSize, Sort.by(Sort.Direction.DESC, key));
       } else {
-        throw MarketException.throwException(ExceptionType.BAD_REQUEST, "Value order incorrect. must be 'asc' or 'desc'");
+        throw MarketException.throwException(ExceptionTypeEnum.BAD_REQUEST, "Value order incorrect. must be 'asc' or 'desc'");
       }
     } catch(Exception ex) {
-      throw MarketException.throwException(ExceptionType.BAD_REQUEST, "Create condition filter failed: " + ex.getMessage());
+      throw MarketException.throwException(ExceptionTypeEnum.BAD_REQUEST, "Create condition filter failed: " + ex.getMessage());
     }
 
   }
@@ -90,7 +90,7 @@ public class FilterBuilderService implements IFilterBuilderService{
 
       return filters;
     } catch (Exception ex) {
-      throw MarketException.throwException(ExceptionType.BAD_REQUEST, "Create condition filter failed: " + ex.getMessage());
+      throw MarketException.throwException(ExceptionTypeEnum.BAD_REQUEST, "Create condition filter failed: " + ex.getMessage());
     }
   }
 
