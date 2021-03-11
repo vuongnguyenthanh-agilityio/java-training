@@ -8,7 +8,6 @@ import com.agility.marketservice.service.IProductService;
 import com.agility.marketservice.service.IUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -24,10 +23,13 @@ import javax.validation.constraints.NotNull;
 @RequestMapping("/api/")
 public class ProductController {
   private final Logger LOG = LoggerFactory.getLogger(getClass());
-  @Autowired
   private IProductService iProductService;
-  @Autowired
   private IUserService iUserService;
+
+  public ProductController(IProductService iProductService, IUserService iUserService) {
+    this.iProductService = iProductService;
+    this.iUserService = iUserService;
+  }
 
   /**
    * POST: /api/products
@@ -37,7 +39,7 @@ public class ProductController {
    * @return
    */
   @PostMapping("products")
-  private ResponseEntity<ProductDto> createProduct(@RequestBody @Valid ProductRequest product) {
+  public ResponseEntity<ProductDto> createProduct(@RequestBody @Valid ProductRequest product) {
     LOG.info(product.toString());
     ProductDto newProduct = iProductService.createProduct(product);
 
@@ -53,7 +55,7 @@ public class ProductController {
    * @return
    */
   @PutMapping("products/{id}")
-  private ResponseEntity<ProductDto> updateProduct(@PathVariable @NotNull String id,
+  public ResponseEntity<ProductDto> updateProduct(@PathVariable @NotNull String id,
                                                    @RequestBody @Valid ProductRequest product) {
     LOG.info(id);
     LOG.info(product.toString());
@@ -70,7 +72,7 @@ public class ProductController {
    * @return
    */
   @GetMapping("products/{id}")
-  private ResponseEntity<ProductDto> getProduct(@PathVariable String id) {
+  public ResponseEntity<ProductDto> getProduct(@PathVariable String id) {
     ProductDto newProduct = iProductService.getProductById(id);
 
     return new ResponseEntity<>(newProduct, HttpStatus.OK);
@@ -84,7 +86,7 @@ public class ProductController {
    * @return
    */
   @DeleteMapping("products/{id}")
-  private ResponseEntity<ProductDto> deleteProduct(@PathVariable String id) {
+  public ResponseEntity<ProductDto> deleteProduct(@PathVariable String id) {
     ProductDto newProduct = iProductService.deleteProduct(id);
 
     return new ResponseEntity<>(newProduct, HttpStatus.OK);
