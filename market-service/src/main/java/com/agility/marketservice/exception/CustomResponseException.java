@@ -24,9 +24,11 @@ public class CustomResponseException extends ResponseEntityExceptionHandler {
    */
   @ExceptionHandler(Exception.class)
   public final ResponseEntity<ExceptionResponse> handleAllExceptions(Exception ex, WebRequest request) {
+    String message = (ex.getMessage() != null) ? ex.getMessage() : "Internal server error.";
+
     ExceptionResponse exceptionResponse = new ExceptionResponse()
         .setTimestamp(new Date())
-        .setMessage(ex.getMessage())
+        .setMessage(message)
         .setDetails(request.getDescription(false));
 
     return new ResponseEntity<>(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);

@@ -1,9 +1,6 @@
 package com.agility.marketservice.config;
 
-import com.agility.marketservice.security.CustomAuthenticationFailureHandler;
-import com.agility.marketservice.security.CustomUserDetailService;
-import com.agility.marketservice.security.JWTAuthenticationFilter;
-import com.agility.marketservice.security.JWTAuthorizationFilter;
+import com.agility.marketservice.security.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,9 +12,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
-
-import javax.servlet.http.HttpServletResponse;
 
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -27,30 +21,31 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
   private BCryptPasswordEncoder bCryptPasswordEncoder;
   @Autowired
   private CustomUserDetailService userDetailsService;
+  @Autowired
+  private CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
+  @Autowired
+  private CustomAuthenticationFailureHandler authenticationFailureHandler;
 
   @Bean
   public BCryptPasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
   }
 
-  @Bean
-  public AuthenticationFailureHandler authenticationFailureHandler() {
-    return new CustomAuthenticationFailureHandler();
-  }
-
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-    http.csrf()
-        .disable()
+    http.csrf().disable()
         .antMatcher("/api/**")
         .authorizeRequests()
         .antMatchers(HttpMethod.POST, "/api/auth").permitAll()
         .antMatchers(HttpMethod.GET, "/api/products").permitAll()
-        .anyRequest()
-        .authenticated()
+        .anyRequest().authenticated()
         .and()
-        .exceptionHandling()
-        .authenticationEntryPoint((req, rsp, e) -> rsp.sendError(HttpServletResponse.SC_UNAUTHORIZED))
+        .httpBasic()
+        .authenticationEntryPoint(customAuthenticationEntryPoint)
+        .and()
+        .formLogin()
+        .loginProcessingUrl("/api/auth")
+        .failureHandler(authenticationFailureHandler)
         .and()
         .addFilter(new JWTAuthenticationFilter(authenticationManager()))
         .addFilter(new JWTAuthorizationFilter(authenticationManager()))
