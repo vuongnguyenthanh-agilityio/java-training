@@ -2,6 +2,7 @@ package com.agility.marketservice.security;
 
 import com.agility.marketservice.model.User;
 import com.agility.marketservice.service.IUserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -14,9 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class CustomUserDetailService implements UserDetailsService {
-  @Autowired
-  private IUserService userService;
+  private final IUserService userService;
   @Override
   public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
     User user = userService.findUserByEmail(email);

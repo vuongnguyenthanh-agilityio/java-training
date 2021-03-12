@@ -10,25 +10,28 @@ import com.agility.marketservice.model.Product;
 import com.agility.marketservice.repository.ICategoryRepository;
 import com.agility.marketservice.repository.IProductRepository;
 import com.agility.marketservice.util.*;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.TextCriteria;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * ** Create by Vuong Nguyen **
+ *
+ * The Class is used for handle business logic for products
+ */
+@RequiredArgsConstructor
+// Project Lombok will generate a constructor for all properties declared final
 @Service
 public class ProductService implements IProductService {
-  @Autowired
-  private IProductRepository iProductRepository;
-  @Autowired
-  private ICategoryRepository iCategoryRepository;
-  @Autowired
-  private IFilterBuilderService iFilterBuilderService;
+  private final IProductRepository iProductRepository;
+  private final ICategoryRepository iCategoryRepository;
+  private final IFilterBuilderService iFilterBuilderService;
 
   @Override
   public PageResponse<ProductDto> getProducts(int page, int size, String filterAnd, String orders) {
@@ -36,14 +39,15 @@ public class ProductService implements IProductService {
   }
 
   /**
-   * Handle get products. Can search filter search, sort
+   * Handle get products from database
+   * Handle search, filter, sort, pagination
    *
-   * @param page
-   * @param size
-   * @param search
-   * @param filterAnd
-   * @param filterOr
-   * @param orders
+   * @param page - The current page
+   * @param size - The number of items in a page
+   * @param search - The text search
+   * @param filterAnd - The text filter and. Ex: category.id|eq|1234
+   * @param filterOr - The text filter or. Ex: category.id|eq|1234&category.id|eq|987
+   * @param orders - The text sort products. Ex: price%7Cdesc%7C
    * @return
    */
   @Override
@@ -61,6 +65,7 @@ public class ProductService implements IProductService {
     // Create query
     GenericFilterCriteriaBuilder builder = new GenericFilterCriteriaBuilder();
     Query query = builder.addCondition(andConditions, orConditions);
+
     // TODO: Will update merge full-text search with the filter in one query
     Page<Product> pageProduct = null;
     if (search != null && !search.isEmpty()) {
@@ -84,6 +89,7 @@ public class ProductService implements IProductService {
    */
   @Override
   public ProductDto createProduct(ProductRequest productRequest) {
+    // Get category from DB If doesn't exist will throws
     Category category = getCategory(productRequest.getCategoryId());
     Product product = new Product()
         .setName(productRequest.getName())
@@ -110,7 +116,6 @@ public class ProductService implements IProductService {
     Product product = getProduct(id);
     Category category = getCategory(productRequest.getCategoryId());
     product.setName(productRequest.getName())
-        .setStatus(ProductStatusEnum.PENDING)
         .setCategory(category)
         .setDescription(productRequest.getDescription())
         .setPrice(productRequest.getPrice())

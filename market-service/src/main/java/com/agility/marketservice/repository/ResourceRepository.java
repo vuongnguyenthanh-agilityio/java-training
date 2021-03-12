@@ -29,11 +29,17 @@ public class ResourceRepository<T, I extends Serializable> extends SimpleMongoRe
     return new PageImpl<T>(content, pageable, total);
   }
 
+  /**
+   * TODO: Don't implement yet
+   * Need to find the solutions
+   * @param criteria
+   * @param query
+   * @param pageable
+   * @return
+   */
   @Override
   public Page<T> findAll(TextCriteria criteria, Query query, Pageable pageable) {
-    long total = mongoOperations.count(query, metadata.getJavaType(), metadata.getCollectionName());
-    List<T> content = mongoOperations.find(query.with(pageable).addCriteria(criteria), metadata.getJavaType(), metadata.getCollectionName());
 
-    return new PageImpl<T>(content, pageable, total);
+    return null;
   }
 }

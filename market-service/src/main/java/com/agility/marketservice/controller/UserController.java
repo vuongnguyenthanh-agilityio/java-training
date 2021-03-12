@@ -4,7 +4,7 @@ import com.agility.marketservice.dto.UserDto;
 import com.agility.marketservice.model.User;
 import com.agility.marketservice.repository.IUserRepository;
 import com.agility.marketservice.util.Mapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,10 +18,10 @@ import java.util.stream.Collectors;
  *
  * TODO: This class only gets data for testing. It doesn't include in the practice scope
  */
+@RequiredArgsConstructor
 @RestController
 public class UserController {
-  @Autowired
-  private IUserRepository userRepository;
+  private final IUserRepository userRepository;
   @GetMapping(path = "/api/users")
   public ResponseEntity<List<UserDto>> getAll() {
     List<User> users = userRepository.findAll();

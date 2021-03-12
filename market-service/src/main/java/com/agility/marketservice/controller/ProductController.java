@@ -3,9 +3,11 @@ package com.agility.marketservice.controller;
 import com.agility.marketservice.controller.request.ProductRequest;
 import com.agility.marketservice.controller.response.PageResponse;
 import com.agility.marketservice.dto.ProductDto;
+import com.agility.marketservice.exception.MarketException;
 import com.agility.marketservice.service.FilterBuilderService;
 import com.agility.marketservice.service.IProductService;
-import com.agility.marketservice.service.IUserService;
+import com.agility.marketservice.util.ExceptionTypeEnum;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -17,19 +19,17 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 /**
- * Created by Vuong Nguyen
+ * ** Created by Vuong Nguyen **
+ *
+ * The class define API endpoint that client can access
  */
+
+@RequiredArgsConstructor // Lombok provided constructor
 @RestController
 @RequestMapping("/api/")
 public class ProductController {
   private final Logger LOG = LoggerFactory.getLogger(getClass());
-  private IProductService iProductService;
-  private IUserService iUserService;
-
-  public ProductController(IProductService iProductService, IUserService iUserService) {
-    this.iProductService = iProductService;
-    this.iUserService = iUserService;
-  }
+  private final IProductService iProductService;
 
   /**
    * POST: /api/products
@@ -40,7 +40,7 @@ public class ProductController {
    */
   @PostMapping("products")
   public ResponseEntity<ProductDto> createProduct(@RequestBody @Valid ProductRequest product) {
-    LOG.info(product.toString());
+    LOG.info("Product input: ", product.toString());
     ProductDto newProduct = iProductService.createProduct(product);
 
     return new ResponseEntity<>(newProduct, HttpStatus.CREATED);
@@ -57,8 +57,8 @@ public class ProductController {
   @PutMapping("products/{id}")
   public ResponseEntity<ProductDto> updateProduct(@PathVariable @NotNull String id,
                                                    @RequestBody @Valid ProductRequest product) {
-    LOG.info(id);
-    LOG.info(product.toString());
+    LOG.info("Product id: ",id);
+    LOG.info("Product update input: ",product.toString());
     ProductDto newProduct = iProductService.updateProduct(id, product);
 
     return new ResponseEntity<>(newProduct, HttpStatus.CREATED);
@@ -113,13 +113,24 @@ public class ProductController {
       @RequestParam(value = "filterAnd", required = false) String filterAnd,
       @RequestParam(value = "orders", required = false) String orders
   ) {
-    LOG.info(orders);
+    if ((filterAnd != null && filterAnd.contains("status"))
+        || (filterOr != null && filterOr.contains("status"))
+    ) {
+      throw MarketException.throwException(ExceptionTypeEnum.BAD_REQUEST, "Filter status does not support.");
+    }
     // Only get product is approved by admin
     String newFilterAnd = "status|eq|APPROVED&";
     if (filterAnd != null && !filterAnd.isEmpty()) {
       newFilterAnd += filterAnd;
     }
-    PageResponse<ProductDto> dtoProducts = iProductService.getProducts(page, size, search, newFilterAnd, filterOr, orders);
+    PageResponse<ProductDto> dtoProducts = iProductService.getProducts(
+        page,
+        size,
+        search,
+        newFilterAnd,
+        filterOr,
+        orders
+    );
 
     return new ResponseEntity<>(dtoProducts, HttpStatus.OK);
   }

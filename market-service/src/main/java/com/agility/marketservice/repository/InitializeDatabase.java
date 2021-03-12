@@ -2,25 +2,21 @@ package com.agility.marketservice.repository;
 
 import com.agility.marketservice.model.*;
 import com.agility.marketservice.util.UserRoleEnum;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @Repository
 public class InitializeDatabase {
-
-  @Autowired
-  private BCryptPasswordEncoder bCryptPasswordEncoder;
-  @Autowired
-  private IRoleRepository roleRepository;
-  @Autowired
-  private IUserRepository userRepository;
-  @Autowired
-  private ICategoryRepository categoryRepository;
-  @Autowired
-  private IShippingServiceRepository shippingServiceRepository;
+  private final BCryptPasswordEncoder bCryptPasswordEncoder;
+  private final IRoleRepository roleRepository;
+  private final IUserRepository userRepository;
+  private final ICategoryRepository categoryRepository;
+  private final IShippingServiceRepository shippingServiceRepository;
 
   /**
    * Initialize database for Roles table
