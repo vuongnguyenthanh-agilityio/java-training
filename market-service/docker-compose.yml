@@ -12,9 +12,12 @@ services:
     ports:
       - 27017:27017
     command: mongod --bind_ip_all --logpath=/dev/null # --quiet
-
   web:
     build: .
+    working_dir: /app
+    volumes:
+      - ./:/app
+      - ~/.m2:/root/.m2
     links:
       - mongodb
     container_name: Market-Service
@@ -27,3 +30,4 @@ services:
       - MONGODB_HOST=mongodb
     depends_on:
       - mongodb
+    command: mvn clean spring-boot:run
