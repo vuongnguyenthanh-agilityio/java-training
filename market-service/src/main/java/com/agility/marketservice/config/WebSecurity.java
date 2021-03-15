@@ -1,6 +1,7 @@
 package com.agility.marketservice.config;
 
 import com.agility.marketservice.security.*;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,15 +17,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class WebSecurity extends WebSecurityConfigurerAdapter {
-  @Autowired
-  private BCryptPasswordEncoder bCryptPasswordEncoder;
-  @Autowired
-  private CustomUserDetailService userDetailsService;
-  @Autowired
-  private CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
-  @Autowired
-  private CustomAuthenticationFailureHandler authenticationFailureHandler;
+  private final CustomUserDetailService userDetailsService;
+  private final CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
+  private final CustomAuthenticationFailureHandler authenticationFailureHandler;
 
   @Bean
   public BCryptPasswordEncoder passwordEncoder() {
@@ -55,7 +52,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+
     auth.userDetailsService(userDetailsService)
-        .passwordEncoder(bCryptPasswordEncoder);
+        .passwordEncoder(passwordEncoder());
   }
 }

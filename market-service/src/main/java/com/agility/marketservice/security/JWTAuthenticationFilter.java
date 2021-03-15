@@ -34,20 +34,20 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
   @Override
   public Authentication attemptAuthentication(HttpServletRequest request,
                                               HttpServletResponse response) throws AuthenticationException {
+    User user = new User();
     try {
-      User user = new ObjectMapper().readValue(request.getInputStream(), User.class);
-
-      return authenticationManager.authenticate(
-          new UsernamePasswordAuthenticationToken(
-              user.getEmail(),
-              user.getPassword(),
-              new ArrayList<>()
-          )
-      );
+      user = new ObjectMapper().readValue(request.getInputStream(), User.class);
     } catch (IOException e) {
       e.printStackTrace();
-      throw new RuntimeException(e);
     }
+
+    return authenticationManager.authenticate(
+        new UsernamePasswordAuthenticationToken(
+            user.getEmail(),
+            user.getPassword(),
+            new ArrayList<>()
+        )
+    );
   }
 
   @Override

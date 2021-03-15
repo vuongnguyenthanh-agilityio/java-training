@@ -113,6 +113,7 @@ public class ProductController {
       @RequestParam(value = "filterAnd", required = false) String filterAnd,
       @RequestParam(value = "orders", required = false) String orders
   ) {
+    LOG.info("Filter And 1: " + filterAnd);
     if ((filterAnd != null && filterAnd.contains("status"))
         || (filterOr != null && filterOr.contains("status"))
     ) {

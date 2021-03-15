@@ -9,5 +9,5 @@ import lombok.experimental.Accessors;
 public class FilterConditionDto {
   private String field;
   private FilterOperation filterOperation;
-  private Object value;
+  private String value;
 }

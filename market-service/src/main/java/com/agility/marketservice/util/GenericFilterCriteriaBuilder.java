@@ -20,10 +20,22 @@ public class GenericFilterCriteriaBuilder {
   static {
     FILTER_CRITERIA.put("EQUAL", condition -> Criteria.where(condition.getField()).is(condition.getValue()));
     FILTER_CRITERIA.put("NOT_EQUAL", condition -> Criteria.where(condition.getField()).ne(condition.getValue()));
-    FILTER_CRITERIA.put("GREATER_THAN", condition -> Criteria.where(condition.getField()).gt(condition.getValue()));
-    FILTER_CRITERIA.put("GREATER_THAN_OR_EQUAL_TO", condition -> Criteria.where(condition.getField()).gte(condition.getValue()));
-    FILTER_CRITERIA.put("LESS_THAN", condition -> Criteria.where(condition.getField()).lt(condition.getValue()));
-    FILTER_CRITERIA.put("LESS_THAN_OR_EQUAL_TO", condition -> Criteria.where(condition.getField()).lte(condition.getValue()));
+    FILTER_CRITERIA.put("GREATER_THAN",
+        condition -> Criteria
+            .where(condition.getField())
+            .gt(Integer.parseInt(condition.getValue())));
+    FILTER_CRITERIA.put("GREATER_THAN_OR_EQUAL_TO",
+        condition -> Criteria
+            .where(condition.getField())
+            .gte(Integer.parseInt(condition.getValue())));
+    FILTER_CRITERIA.put("LESS_THAN",
+        condition -> Criteria
+            .where(condition.getField())
+            .lt(Integer.parseInt(condition.getValue())));
+    FILTER_CRITERIA.put("LESS_THAN_OR_EQUAL_TO",
+        condition -> Criteria
+            .where(condition.getField())
+            .lte(Integer.parseInt(condition.getValue())));
     FILTER_CRITERIA.put("CONTAINS", condition -> Criteria.where(condition.getField()).regex((String) condition.getValue()));
     FILTER_CRITERIA.put("JOIN", condition ->  Criteria.where(condition.getField()).is(condition.getValue()));
   }

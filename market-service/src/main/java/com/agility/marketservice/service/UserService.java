@@ -2,14 +2,15 @@ package com.agility.marketservice.service;
 
 import com.agility.marketservice.model.User;
 import com.agility.marketservice.repository.IUserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class UserService implements IUserService {
-  @Autowired
-  private IUserRepository userRepository;
+  private final IUserRepository userRepository;
 
   @Override
   public User getCurrentUser() {

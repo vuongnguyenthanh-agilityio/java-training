@@ -11,6 +11,7 @@ import com.agility.marketservice.repository.ICategoryRepository;
 import com.agility.marketservice.repository.IProductRepository;
 import com.agility.marketservice.util.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.query.Query;
@@ -28,6 +29,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 // Project Lombok will generate a constructor for all properties declared final
 @Service
+@Primary
 public class ProductService implements IProductService {
   private final IProductRepository iProductRepository;
   private final ICategoryRepository iCategoryRepository;
