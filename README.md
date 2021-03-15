@@ -22,6 +22,10 @@
     - `cd practice-one/market-service/`
     - `docker-compose build`
     - `docker-compose up`
+  * Run test
+    - `docker ps`
+    - `docker exec -it YOUR_APP_CONTAINER_ID bash`
+    - `mvn test`
 
 ## API Endpoint (http://localhost:8080)
 - POST: /api/auth
