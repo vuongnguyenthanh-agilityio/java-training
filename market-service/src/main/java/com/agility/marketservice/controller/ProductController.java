@@ -40,7 +40,7 @@ public class ProductController {
    */
   @PostMapping("products")
   public ResponseEntity<ProductDto> createProduct(@RequestBody @Valid ProductRequest product) {
-    LOG.info("Product input: ", product.toString());
+    LOG.info("Product input: "+ product.toString());
     ProductDto newProduct = iProductService.createProduct(product);
 
     return new ResponseEntity<>(newProduct, HttpStatus.CREATED);
@@ -57,8 +57,8 @@ public class ProductController {
   @PutMapping("products/{id}")
   public ResponseEntity<ProductDto> updateProduct(@PathVariable @NotNull String id,
                                                    @RequestBody @Valid ProductRequest product) {
-    LOG.info("Product id: ",id);
-    LOG.info("Product update input: ",product.toString());
+    LOG.info("Product id: " +id);
+    LOG.info("Product update input: " +product.toString());
     ProductDto newProduct = iProductService.updateProduct(id, product);
 
     return new ResponseEntity<>(newProduct, HttpStatus.CREATED);
