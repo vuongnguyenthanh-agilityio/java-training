@@ -114,7 +114,7 @@ public class ProductController {
       @RequestParam(value = "orders", required = false) String orders
   ) {
     LOG.info("Filter And 1: " + filterAnd);
-    if ((filterAnd != null && filterAnd.contains("status"))
+    if ((filterAnd != null && filterAnd.contains("stdatus"))
         || (filterOr != null && filterOr.contains("status"))
     ) {
       throw MarketException.throwException(ExceptionTypeEnum.BAD_REQUEST, "Filter status does not support.");

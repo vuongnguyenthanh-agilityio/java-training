@@ -60,7 +60,7 @@ public class ProductControllerTest {
   private ProductController productController;
   private Faker faker = new Faker();
   private Category category = CategoryMock.getCategory();
-  private ProductDto productDto = ProductMock.getProduct();
+  private ProductDto productDto = ProductMock.getProductDto();
   private ProductRequest productRequest = new ProductRequest()
       .setName(faker.name().name())
       .setCategoryId("category_1")
@@ -147,7 +147,7 @@ public class ProductControllerTest {
 
   @Test
   void apiGetProductsSuccess() throws Exception {
-    List<ProductDto> productDtoList = ProductMock.getListProducts(10);
+    List<ProductDto> productDtoList = ProductMock.getListProductDto(10);
     PageResponse pageResponse = new PageResponse();
     Page<ProductDto> page = new PageImpl<>(productDtoList);
     pageResponse.setPageResponse(page, productDtoList);
@@ -167,7 +167,7 @@ public class ProductControllerTest {
 
   @Test
   void apiGetProductsPaginationSuccess() throws Exception {
-    List<ProductDto> productDtoList = ProductMock.getListProducts(5);
+    List<ProductDto> productDtoList = ProductMock.getListProductDto(5);
     PageResponse pageResponse = new PageResponse();
     Pageable pageable = new PageableMock()
         .setItemsPerPage(10)
