@@ -1,0 +1,33 @@
+version: '3.5'
+services:
+  mongodb:
+    image: mongo:latest
+    restart: always
+    container_name: "mongodb"
+    environment:
+      - MONGO_DATA_DIR=/db/data
+      - MONGO_LOG_DIR=/dev/null
+    volumes:
+      - ./db/data:/data/db
+    ports:
+      - 27017:27017
+    command: mongod --bind_ip_all --logpath=/dev/null # --quiet
+  web:
+    build: .
+    working_dir: /app
+    volumes:
+      - ./:/app
+      - ~/.m2:/root/.m2
+    links:
+      - mongodb
+    container_name: Market-Service
+    restart: on-failure
+    ports:
+      - "8080:8080"
+    environment:
+      - MONGODB_PORT=27017
+      - MONGODB_DATABASE=marketdb
+      - MONGODB_HOST=mongodb
+    depends_on:
+      - mongodb
+    command: mvn clean spring-boot:run

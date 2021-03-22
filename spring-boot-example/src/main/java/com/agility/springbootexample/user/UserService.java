@@ -1,5 +1,7 @@
 package com.agility.springbootexample.user;
 
+import com.agility.springbootexample.category.Category;
+import com.agility.springbootexample.category.ICategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -12,16 +14,18 @@ import java.util.Optional;
 public class UserService {
   @Autowired
   private IUserRepository userRepository;
+  @Autowired
+  private ICategoryRepository icategoryRepository;
 
-  public List<User> getAll(String name) {
+  public List<User> getAll(String category) {
     List<User> users = new ArrayList<>();
-    if (name == null) {
+    if (category == null) {
       userRepository
           .findAll(Sort.by(Sort.Direction.ASC, "createDate"))
           .forEach(users::add);
     } else {
       userRepository
-          .findByNameContaining(name)
+          .findByInterestCategories(category)
           .forEach(users::add);
     }
 
@@ -40,7 +44,11 @@ public class UserService {
       throw new UserNotFoundException("The user: " + id +" not found");
     }
 
-    return userData.get();
+    User user = userData.get();
+    List<Category> categories = icategoryRepository.findByIdIn(user.getInterestCategories());
+    System.out.println("Categories: "+ categories.toString());
+    user.setCategories(categories);
+    return user;
   }
 
   public User createUser(User user) {

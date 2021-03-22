@@ -15,8 +15,8 @@ public class UserController {
   private UserService userService;
   private final Logger LOG = LoggerFactory.getLogger(getClass());
   @GetMapping(path = "/users")
-  public ResponseEntity<List<User>> getAll(@RequestParam(required = false) String name) {
-    List<User> users = userService.getAll(name);
+  public ResponseEntity<List<User>> getAll(@RequestParam(required = false) String category) {
+    List<User> users = userService.getAll(category);
     LOG.info(users.toString());
     if (users.isEmpty()) {
       return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
