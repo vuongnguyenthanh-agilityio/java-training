@@ -11,7 +11,7 @@
 	<modules>
 		<module>config-service</module>
 		<module>discovery-service</module>
-		<module>git-local-config</module>
+		<module>currency-exchange-service</module>
 	</modules>
 	<groupId>com.agility</groupId>
 	<artifactId>microservice-demo</artifactId>
