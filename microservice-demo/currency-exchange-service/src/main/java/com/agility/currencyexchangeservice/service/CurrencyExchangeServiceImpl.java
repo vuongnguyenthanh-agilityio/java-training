@@ -5,9 +5,7 @@ import com.agility.currencyexchangeservice.exception.CurrencyExchangeException;
 import com.agility.currencyexchangeservice.model.CurrencyExchange;
 import com.agility.currencyexchangeservice.repository.CurrencyExchangeRepository;
 import com.agility.currencyexchangeservice.util.ExceptionTypeEnum;
-import com.mongodb.client.MongoCollection;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.mongodb.MongoCollectionUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
