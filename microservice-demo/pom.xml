@@ -12,7 +12,7 @@
 		<module>config-service</module>
 		<module>discovery-service</module>
 		<module>currency-exchange-service</module>
-		<module>auth-service</module>
+		<module>api-gateway</module>
 	</modules>
 	<groupId>com.agility</groupId>
 	<artifactId>microservice-demo</artifactId>
