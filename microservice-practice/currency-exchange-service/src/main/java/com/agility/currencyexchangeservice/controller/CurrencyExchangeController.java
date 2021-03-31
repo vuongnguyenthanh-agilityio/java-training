@@ -41,14 +41,17 @@ public class CurrencyExchangeController {
     return new ResponseEntity<>(currencyExchange, HttpStatus.OK);
   }
 
-  @GetMapping("/currency-exchange/rates/{from}-{to}")
+  @GetMapping("/currency-exchange-rates/{from}-{to}")
   public ResponseEntity<ExchangeRateDto> getCurrencyExchangeRate(
       @PathVariable("from") @NotNull String from,
       @PathVariable("to") @NotNull String to
   ) {
     LOG.info("Currency exchange from -> {} to -> {}", from, to);
+    if (from == null || from.isEmpty()) {
+      throw CurrencyExchangeException.throwException(ExceptionTypeEnum.BAD_REQUEST, "Currency 'from' is required.");
+    }
     if (to == null || to.isEmpty()) {
-      throw CurrencyExchangeException.throwException(ExceptionTypeEnum.BAD_REQUEST, "Currency to is required.");
+      throw CurrencyExchangeException.throwException(ExceptionTypeEnum.BAD_REQUEST, "Currency 'to' is required.");
     }
     ExchangeRateDto exchangeRateDto = currencyExchangeService.getExchangeRate(from.toUpperCase(), to.toUpperCase());
 

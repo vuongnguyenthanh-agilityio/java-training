@@ -5,119 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6285f748-7ae2-4e97-8fcc-869197378953" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_fileupload_commons_fileupload_1_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_io_commons_io_2_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_github_openfeign_feign_core_10_10_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_github_openfeign_feign_slf4j_10_10_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_github_openfeign_form_feign_form_3_8_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_github_openfeign_form_feign_form_spring_3_8_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_aspectj_aspectjweaver_1_9_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_woodstox_stax2_api_4_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_aop_2_4_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_openfeign_core_3_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_starter_netflix_eureka_client_3_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_starter_openfeign_3_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/currency-conversion-service/src/main/java/com/agility/currencyconversionservice/controller/CurrencyConversionController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/currency-conversion-service/src/main/java/com/agility/currencyconversionservice/dto/CurrencyConversionDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/currency-conversion-service/src/main/java/com/agility/currencyconversionservice/exception/CurrencyConversionException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/currency-conversion-service/src/main/java/com/agility/currencyconversionservice/exception/CurrencyExchangeExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/currency-conversion-service/src/main/java/com/agility/currencyconversionservice/exception/CustomResponseException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/currency-conversion-service/src/main/java/com/agility/currencyconversionservice/exception/ExceptionResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/currency-conversion-service/src/main/java/com/agility/currencyconversionservice/exception/FeignHttpExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/currency-conversion-service/src/main/java/com/agility/currencyconversionservice/exception/HandleFeignError.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/currency-conversion-service/src/main/java/com/agility/currencyconversionservice/service/CurrencyConversionService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/currency-conversion-service/src/main/java/com/agility/currencyconversionservice/service/CurrencyConversionServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/currency-conversion-service/src/main/java/com/agility/currencyconversionservice/service/CurrencyExchangeServiceProxy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/currency-conversion-service/src/main/java/com/agility/currencyconversionservice/util/ExceptionTypeEnum.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/currency-exchange-service/src/main/java/com/agility/currencyexchangeservice/controller/CurrencyExchangeController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/currency-exchange-service/src/main/java/com/agility/currencyexchangeservice/dto/ExchangeRateDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-gateway/src/main/java/com/agility/apigateway/filter/CustomFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/git-local-config/currency-conversion-service.properties" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/git-local-config/git-local-config.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/api-gateway/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/api-gateway/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/api-gateway/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/api-gateway/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/api-gateway/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/api-gateway/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/api-gateway/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/api-gateway/src/main/java/com/agility/apigateway/ApiGatewayApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/api-gateway/src/main/java/com/agility/apigateway/config/SpringCloudConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/api-gateway/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/api-gateway/src/test/java/com/agility/apigateway/ApiGatewayApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/config-service/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/config-service/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/config-service/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/config-service/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/config-service/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/config-service/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/config-service/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/config-service/src/main/java/com/agility/configservice/ConfigServiceApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/config-service/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/currency-exchange-service/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/currency-exchange-service/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/currency-exchange-service/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/currency-exchange-service/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/currency-exchange-service/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/currency-exchange-service/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/currency-exchange-service/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/currency-exchange-service/src/main/java/com/agility/currencyexchangeservice/CurrencyExchangeServiceApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/currency-exchange-service/src/main/java/com/agility/currencyexchangeservice/controller/CurrencyExchangeController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/currency-exchange-service/src/main/java/com/agility/currencyexchangeservice/controller/request/CurrencyExchangeReq.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/currency-exchange-service/src/main/java/com/agility/currencyexchangeservice/dto/RoleDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/currency-exchange-service/src/main/java/com/agility/currencyexchangeservice/dto/UserDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/currency-exchange-service/src/main/java/com/agility/currencyexchangeservice/exception/CurrencyExchangeException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/currency-exchange-service/src/main/java/com/agility/currencyexchangeservice/exception/CustomResponseException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/currency-exchange-service/src/main/java/com/agility/currencyexchangeservice/exception/ExceptionResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/currency-exchange-service/src/main/java/com/agility/currencyexchangeservice/model/CurrencyExchange.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/currency-exchange-service/src/main/java/com/agility/currencyexchangeservice/repository/CurrencyExchangeRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/currency-exchange-service/src/main/java/com/agility/currencyexchangeservice/service/CurrencyExchangeService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/currency-exchange-service/src/main/java/com/agility/currencyexchangeservice/service/CurrencyExchangeServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/currency-exchange-service/src/main/java/com/agility/currencyexchangeservice/util/ExceptionTypeEnum.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/currency-exchange-service/src/main/java/com/agility/currencyexchangeservice/util/UserRoleEnum.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/currency-exchange-service/src/main/resources/bootstrap.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/currency-exchange-service/src/test/java/com/agility/currencyexchangeservice/CurrencyExchangeServiceApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/discovery-service/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/discovery-service/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/discovery-service/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/discovery-service/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/discovery-service/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/discovery-service/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/discovery-service/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/discovery-service/src/main/java/com/agility/discoveryservice/DiscoveryServiceApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/discovery-service/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/discovery-service/src/test/java/com/agility/discoveryservice/DiscoveryServiceApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/git-local-config" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/oauth-service/src/main/java/com/agility/oauthservice/config/SecurityConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/oauth-service/src/main/java/com/agility/oauthservice/repository/UserRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/oauth-service/src/main/java/com/agility/oauthservice/security/CustomUserDetailService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/src/main/java/com/agility/microservicedemo/MicroserviceDemoApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microservice-demo/src/test/java/com/agility/microservicedemo/MicroserviceDemoApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/java/com/agility/apigateway/config/SpringCloudConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/java/com/agility/apigateway/config/SpringCloudConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/currency-conversion-service/src/main/java/com/agility/currencyconversionservice/exception/CurrencyExchangeExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/currency-conversion-service/src/main/java/com/agility/currencyconversionservice/exception/CustomResponseException.java" beforeDir="false" afterPath="$PROJECT_DIR$/currency-conversion-service/src/main/java/com/agility/currencyconversionservice/exception/CustomResponseException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/currency-conversion-service/src/main/java/com/agility/currencyconversionservice/exception/FeignHttpExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/currency-conversion-service/src/main/java/com/agility/currencyconversionservice/exception/HandleFeignError.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/currency-conversion-service/src/main/java/com/agility/currencyconversionservice/service/CurrencyConversionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/currency-conversion-service/src/main/java/com/agility/currencyconversionservice/service/CurrencyConversionServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/currency-conversion-service/src/main/java/com/agility/currencyconversionservice/service/CurrencyExchangeServiceProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/currency-conversion-service/src/main/java/com/agility/currencyconversionservice/service/CurrencyExchangeServiceProxy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/currency-exchange-service/src/main/java/com/agility/currencyexchangeservice/controller/CurrencyExchangeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/currency-exchange-service/src/main/java/com/agility/currencyexchangeservice/controller/CurrencyExchangeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/currency-exchange-service/src/main/java/com/agility/currencyexchangeservice/service/CurrencyExchangeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/currency-exchange-service/src/main/java/com/agility/currencyexchangeservice/service/CurrencyExchangeServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/git-local-config/currency-exchange-service-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/git-local-config/currency-exchange-service-dev.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/git-local-config/currency-exchange-service-prod.properties" beforeDir="false" afterPath="$PROJECT_DIR$/git-local-config/currency-exchange-service-prod.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/git-local-config/currency-exchange-service.properties" beforeDir="false" afterPath="$PROJECT_DIR$/git-local-config/currency-exchange-service.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/git-local-config/security-config-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/git-local-config/oauth-service-dev.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/git-local-config/security-config-prod.properties" beforeDir="false" afterPath="$PROJECT_DIR$/git-local-config/oauth-service-prod.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/git-local-config/security-config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/git-local-config/oauth-service.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/oauth-service/src/main/java/com/agility/oauthservice/model/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/oauth-service/src/main/java/com/agility/oauthservice/model/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/oauth-service/src/main/java/com/agility/oauthservice/model/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/oauth-service/src/main/java/com/agility/oauthservice/model/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/oauth-service/src/main/java/com/agility/oauthservice/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/oauth-service/src/main/java/com/agility/oauthservice/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/oauth-service/src/main/java/com/agility/oauthservice/security/JWTConfigValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/oauth-service/src/main/java/com/agility/oauthservice/security/JWTConfigValue.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,8 +39,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -173,7 +82,20 @@
       <recent name="com.agility.currencyconversionservice.util" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.CurrencyConversionServiceApplication">
+  <component name="RunManager" selected="Application.ApiGatewayApplication">
+    <configuration name="ApiGatewayApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.agility.apigateway.ApiGatewayApplication" />
+      <module name="api-gateway" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.agility.apigateway.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ConfigServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.agility.configservice.ConfigServiceApplication" />
       <module name="config-service" />
@@ -226,25 +148,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="OauthServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.agility.oauthservice.OauthServiceApplication" />
-      <module name="oauth-service" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.agility.oauthservice.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ApiGatewayApplication" />
         <item itemvalue="Application.CurrencyConversionServiceApplication" />
-        <item itemvalue="Application.DiscoveryServiceApplication" />
         <item itemvalue="Application.CurrencyExchangeServiceApplication" />
-        <item itemvalue="Application.OauthServiceApplication" />
+        <item itemvalue="Application.DiscoveryServiceApplication" />
         <item itemvalue="Application.ConfigServiceApplication" />
       </list>
     </recent_temporary>
@@ -290,30 +199,25 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/currency-conversion-service/src/main/java/com/agility/currencyconversionservice/service/CurrencyConversionServiceImpl.java</url>
-          <line>50</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/currency-conversion-service/src/main/java/com/agility/currencyconversionservice/exception/CurrencyExchangeExceptionHandler.java</url>
-          <line>10</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/currency-conversion-service/src/main/java/com/agility/currencyconversionservice/service/CurrencyConversionServiceImpl.java</url>
-          <line>32</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/currency-conversion-service/src/main/java/com/agility/currencyconversionservice/service/CurrencyConversionServiceImpl.java</url>
           <line>22</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/currency-conversion-service/src/main/java/com/agility/currencyconversionservice/service/CurrencyConversionServiceImpl.java</url>
+          <url>file://$PROJECT_DIR$/api-gateway/src/main/java/com/agility/apigateway/filter/CustomFilter.java</url>
+          <line>33</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/api-gateway/src/main/java/com/agility/apigateway/filter/CustomFilter.java</url>
           <line>34</line>
-          <option name="timeStamp" value="12" />
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="ex" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

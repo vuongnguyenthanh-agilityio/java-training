@@ -5,13 +5,15 @@ import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
+//@Configuration
 public class SpringCloudConfig {
   @Bean
   public RouteLocator gatewayRoutes(RouteLocatorBuilder builder) {
     return builder.routes()
         .route(r -> r.path("/v1/api/currency-exchange/**")
-        .uri("http://localhost:8000/"))
+          .uri("lb://currency-exchange-service"))
+        .route(r -> r.path("/v1/api/currency-conversion/**")
+          .uri("lb://currency-conversion-service"))
         .build();
   }
 }

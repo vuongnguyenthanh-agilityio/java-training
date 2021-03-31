@@ -66,7 +66,7 @@ public class CurrencyExchangeServiceImpl implements CurrencyExchangeService {
     if (!currencyExchangeOptional.isPresent()) {
       throw CurrencyExchangeException.throwException(
           ExceptionTypeEnum.NOT_FOUND,
-          "The currency exchange from: " + from + " to " + to + " not found."
+          "The currency exchange " + from + "-" + to + " not found."
       );
     }
     CurrencyExchange currencyExchange = currencyExchangeOptional.get();

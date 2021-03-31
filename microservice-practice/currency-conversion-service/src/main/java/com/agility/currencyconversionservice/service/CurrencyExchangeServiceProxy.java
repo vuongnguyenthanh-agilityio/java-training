@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 
 @FeignClient(name = "currency-exchange-service")
 public interface CurrencyExchangeServiceProxy {
-  @GetMapping("/v1/api/currency-exchange/rates/{from}-{to}")
+  @GetMapping("/v1/api/currency-exchange-rates/{from}-{to}")
   CurrencyConversionDto getCurrencyExchangeRate(
       @PathVariable("from") @NotNull String from,
       @PathVariable("to") @NotNull String to
