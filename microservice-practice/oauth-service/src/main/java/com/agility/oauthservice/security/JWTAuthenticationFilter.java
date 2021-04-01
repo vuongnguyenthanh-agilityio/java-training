@@ -66,14 +66,14 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                           FilterChain chain,
                                           Authentication authResult) throws IOException, ServletException {
     org.springframework.security.core.userdetails.User user = (org.springframework.security.core.userdetails.User) authResult.getPrincipal();
-    String login = user.getUsername();
-    if (login != null && login.length() > 0) {
-      Claims claims = Jwts.claims().setSubject(login);
+    String userId = user.getUsername();
+    if (userId != null && userId.length() > 0) {
+      Claims claims = Jwts.claims().setSubject(userId);
       byte[] signingKey = jwtConfigValue.getJwtSecret().getBytes();
       List<String> roles = new ArrayList<>();
       user.getAuthorities().stream().forEach(authority -> roles.add(authority.getAuthority()));
       claims.put(ROLES, roles);
-      String token = token = Jwts.builder()
+      String token = Jwts.builder()
           .setClaims(claims)
           .setIssuedAt(new Date())
           .setExpiration(new Date(System.currentTimeMillis() + jwtConfigValue.getJwtExpirationTime()))

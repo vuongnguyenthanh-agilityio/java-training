@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @RestController
 @RequestMapping("/v1/api")
@@ -25,20 +26,51 @@ public class CurrencyExchangeController {
 
   @PostMapping("/currency-exchange")
   public ResponseEntity<CurrencyExchange> createCurrencyExchange(
-      @RequestBody @Valid CurrencyExchangeReq currencyExchangeReq) {
-
+      @RequestHeader("user-id") String userId,
+      @RequestHeader("role") String role,
+      @RequestBody @Valid CurrencyExchangeReq currencyExchangeReq
+  ) {
     LOG.info("Currency exchange input -> {}", currencyExchangeReq);
-    CurrencyExchange currencyExchange = currencyExchangeService.create(currencyExchangeReq);
+    LOG.info("User id -> {} Role -> {}", userId, role);
+    if (userId == null || role == null || !"ADMIN".equals(role)) {
+      throw CurrencyExchangeException.throwException(ExceptionTypeEnum.FORBIDDEN, "Forbidden");
+    }
+
+    CurrencyExchange currencyExchange = currencyExchangeService.create(currencyExchangeReq, userId);
 
     return new ResponseEntity<>(currencyExchange, HttpStatus.CREATED);
   }
 
   @GetMapping("/currency-exchange/{id}")
-  public ResponseEntity<CurrencyExchange> getCurrencyExchange(@PathVariable("id") @NotNull String id) {
+  public ResponseEntity<CurrencyExchange> getCurrencyExchange(
+      @PathVariable("id") @NotNull String id,
+      @RequestHeader("user-id") String userId,
+      @RequestHeader("role") String role
+  ) {
     LOG.info("Currency Id -> {}", id);
+    LOG.info("User id -> {} Role -> {}", userId, role);
+    if (userId == null || role == null || !"ADMIN".equals(role)) {
+      throw CurrencyExchangeException.throwException(ExceptionTypeEnum.FORBIDDEN, "Forbidden");
+    }
+
     CurrencyExchange currencyExchange = currencyExchangeService.get(id);
 
     return new ResponseEntity<>(currencyExchange, HttpStatus.OK);
+  }
+
+  @GetMapping("/currency-exchange")
+  public ResponseEntity<List<CurrencyExchange>> getAll(
+      @RequestHeader("user-id") String userId,
+      @RequestHeader("role") String role
+  ) {
+    LOG.info("User id -> {} Role -> {}", userId, role);
+    if (userId == null || role == null || !"ADMIN".equals(role)) {
+      throw CurrencyExchangeException.throwException(ExceptionTypeEnum.FORBIDDEN, "Forbidden");
+    }
+
+    List<CurrencyExchange> currencyExchangeList = currencyExchangeService.getList();
+
+    return new ResponseEntity<>(currencyExchangeList, HttpStatus.OK);
   }
 
   @GetMapping("/currency-exchange-rates/{from}-{to}")

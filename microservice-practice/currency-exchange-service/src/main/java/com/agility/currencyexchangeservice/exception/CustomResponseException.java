@@ -64,6 +64,16 @@ public class CustomResponseException extends ResponseEntityExceptionHandler {
     return new ResponseEntity<>(exceptionResponse, HttpStatus.UNAUTHORIZED);
   }
 
+  @ExceptionHandler(CurrencyExchangeException.ForbiddenException.class)
+  public final ResponseEntity<ExceptionResponse> handleForbiddenException(Exception ex, WebRequest request) {
+    ExceptionResponse exceptionResponse = new ExceptionResponse()
+        .setTimestamp(new Date())
+        .setMessage(ex.getMessage())
+        .setDetails(request.getDescription(false));
+
+    return new ResponseEntity<>(exceptionResponse, HttpStatus.FORBIDDEN);
+  }
+
   @Override
   protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
                                                                 HttpHeaders headers,

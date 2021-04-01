@@ -22,10 +22,7 @@ public class CurrencyExchange {
   private String name;
   private double rate;
   private String description;
-  @CreatedBy
-  private UserDto createdBy;
-  @LastModifiedBy
-  private UserDto lastModifiedBy;
+  private String createdById;
   @CreatedDate
   private Date createdAt;
   @LastModifiedDate

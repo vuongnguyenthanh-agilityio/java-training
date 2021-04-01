@@ -4,8 +4,11 @@ import com.agility.currencyexchangeservice.controller.request.CurrencyExchangeRe
 import com.agility.currencyexchangeservice.dto.ExchangeRateDto;
 import com.agility.currencyexchangeservice.model.CurrencyExchange;
 
+import java.util.List;
+
 public interface CurrencyExchangeService {
-  CurrencyExchange create(CurrencyExchangeReq currencyExchange);
+  CurrencyExchange create(CurrencyExchangeReq currencyExchange, String userId);
   CurrencyExchange get(String id);
   ExchangeRateDto getExchangeRate(String from, String to);
+  List<CurrencyExchange> getList();
 }

@@ -5,21 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6285f748-7ae2-4e97-8fcc-869197378953" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/api-gateway/src/main/java/com/agility/apigateway/filter/CustomFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-gateway/src/main/java/com/agility/apigateway/exception/TokenException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-gateway/src/main/java/com/agility/apigateway/exception/UnauthorizedException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-gateway/src/main/java/com/agility/apigateway/filter/AuthorizationFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/git-local-config/api-gateway.properties" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/git-local-config/currency-conversion-service.properties" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/git-local-config/git-local-config.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api-gateway/src/main/java/com/agility/apigateway/config/SpringCloudConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/java/com/agility/apigateway/config/SpringCloudConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/currency-conversion-service/src/main/java/com/agility/currencyconversionservice/exception/CurrencyExchangeExceptionHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/currency-conversion-service/src/main/java/com/agility/currencyconversionservice/exception/CustomResponseException.java" beforeDir="false" afterPath="$PROJECT_DIR$/currency-conversion-service/src/main/java/com/agility/currencyconversionservice/exception/CustomResponseException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/currency-conversion-service/src/main/java/com/agility/currencyconversionservice/exception/FeignHttpExceptionHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/currency-conversion-service/src/main/java/com/agility/currencyconversionservice/exception/HandleFeignError.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/currency-conversion-service/src/main/java/com/agility/currencyconversionservice/service/CurrencyConversionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/currency-conversion-service/src/main/java/com/agility/currencyconversionservice/service/CurrencyConversionServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/currency-conversion-service/src/main/java/com/agility/currencyconversionservice/service/CurrencyExchangeServiceProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/currency-conversion-service/src/main/java/com/agility/currencyconversionservice/service/CurrencyExchangeServiceProxy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/java/com/agility/apigateway/filter/CustomFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/resources/bootstrap.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/currency-exchange-service/src/main/java/com/agility/currencyexchangeservice/CurrencyExchangeServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/currency-exchange-service/src/main/java/com/agility/currencyexchangeservice/CurrencyExchangeServiceApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/currency-exchange-service/src/main/java/com/agility/currencyexchangeservice/controller/CurrencyExchangeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/currency-exchange-service/src/main/java/com/agility/currencyexchangeservice/controller/CurrencyExchangeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/currency-exchange-service/src/main/java/com/agility/currencyexchangeservice/exception/CurrencyExchangeException.java" beforeDir="false" afterPath="$PROJECT_DIR$/currency-exchange-service/src/main/java/com/agility/currencyexchangeservice/exception/CurrencyExchangeException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/currency-exchange-service/src/main/java/com/agility/currencyexchangeservice/exception/CustomResponseException.java" beforeDir="false" afterPath="$PROJECT_DIR$/currency-exchange-service/src/main/java/com/agility/currencyexchangeservice/exception/CustomResponseException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/currency-exchange-service/src/main/java/com/agility/currencyexchangeservice/model/CurrencyExchange.java" beforeDir="false" afterPath="$PROJECT_DIR$/currency-exchange-service/src/main/java/com/agility/currencyexchangeservice/model/CurrencyExchange.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/currency-exchange-service/src/main/java/com/agility/currencyexchangeservice/service/CurrencyExchangeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/currency-exchange-service/src/main/java/com/agility/currencyexchangeservice/service/CurrencyExchangeService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/currency-exchange-service/src/main/java/com/agility/currencyexchangeservice/service/CurrencyExchangeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/currency-exchange-service/src/main/java/com/agility/currencyexchangeservice/service/CurrencyExchangeServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/git-local-config/currency-exchange-service-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/git-local-config/currency-exchange-service-dev.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/git-local-config/currency-exchange-service-prod.properties" beforeDir="false" afterPath="$PROJECT_DIR$/git-local-config/currency-exchange-service-prod.properties" afterDir="false" />
@@ -27,6 +29,8 @@
       <change beforePath="$PROJECT_DIR$/git-local-config/security-config-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/git-local-config/oauth-service-dev.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/git-local-config/security-config-prod.properties" beforeDir="false" afterPath="$PROJECT_DIR$/git-local-config/oauth-service-prod.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/git-local-config/security-config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/git-local-config/oauth-service.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oauth-service/src/main/java/com/agility/oauthservice/security/CustomUserDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/oauth-service/src/main/java/com/agility/oauthservice/security/CustomUserDetailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oauth-service/src/main/java/com/agility/oauthservice/security/JWTAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/oauth-service/src/main/java/com/agility/oauthservice/security/JWTAuthenticationFilter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +71,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/currency-conversion-service/src/main/java/com/agility/currencyconversionservice" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/git-local-config" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -76,32 +80,20 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/git-local-config" />
       <recent name="$PROJECT_DIR$/currency-conversion-service/src/main/java/com/agility/currencyconversionservice" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.agility.currencyconversionservice.util" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ApiGatewayApplication">
+  <component name="RunManager" selected="Application.CurrencyConversionServiceApplication">
     <configuration name="ApiGatewayApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.agility.apigateway.ApiGatewayApplication" />
       <module name="api-gateway" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.agility.apigateway.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ConfigServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.agility.configservice.ConfigServiceApplication" />
-      <module name="config-service" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.agility.configservice.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -148,13 +140,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="OauthServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.agility.oauthservice.OauthServiceApplication" />
+      <module name="oauth-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.agility.oauthservice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ApiGatewayApplication" />
         <item itemvalue="Application.CurrencyConversionServiceApplication" />
+        <item itemvalue="Application.OauthServiceApplication" />
+        <item itemvalue="Application.ApiGatewayApplication" />
         <item itemvalue="Application.CurrencyExchangeServiceApplication" />
         <item itemvalue="Application.DiscoveryServiceApplication" />
-        <item itemvalue="Application.ConfigServiceApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -203,14 +208,19 @@
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/api-gateway/src/main/java/com/agility/apigateway/filter/CustomFilter.java</url>
-          <line>33</line>
-          <option name="timeStamp" value="15" />
+          <url>file://$PROJECT_DIR$/api-gateway/src/main/java/com/agility/apigateway/filter/AuthorizationFilter.java</url>
+          <line>42</line>
+          <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/api-gateway/src/main/java/com/agility/apigateway/filter/CustomFilter.java</url>
-          <line>34</line>
-          <option name="timeStamp" value="16" />
+          <url>file://$PROJECT_DIR$/api-gateway/src/main/java/com/agility/apigateway/exception/UnauthorizedException.java</url>
+          <line>17</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/api-gateway/src/main/java/com/agility/apigateway/exception/TokenException.java</url>
+          <line>17</line>
+          <option name="timeStamp" value="26" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

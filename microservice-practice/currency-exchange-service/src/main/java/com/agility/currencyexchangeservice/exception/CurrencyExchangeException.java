@@ -24,6 +24,8 @@ public class CurrencyExchangeException {
         return new NotFoundException(message, error);
       case UNAUTHORIZED:
         return new UnauthorizedException(message, error);
+      case FORBIDDEN:
+        return new ForbiddenException(message, error);
       default:
         return new RuntimeException(message, error);
     }
@@ -43,8 +45,16 @@ public class CurrencyExchangeException {
     }
   }
 
+  @ResponseStatus(HttpStatus.UNAUTHORIZED)
   public static class UnauthorizedException extends RuntimeException {
     public UnauthorizedException(String message, Throwable error) {
+      super(message, error);
+    }
+  }
+
+  @ResponseStatus(HttpStatus.FORBIDDEN)
+  public static class ForbiddenException extends RuntimeException {
+    public ForbiddenException(String message, Throwable error) {
       super(message, error);
     }
   }

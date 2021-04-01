@@ -9,6 +9,7 @@ import com.agility.currencyexchangeservice.util.ExceptionTypeEnum;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -23,7 +24,7 @@ public class CurrencyExchangeServiceImpl implements CurrencyExchangeService {
    * @return
    */
   @Override
-  public CurrencyExchange create(CurrencyExchangeReq currencyExchangeReq) {
+  public CurrencyExchange create(CurrencyExchangeReq currencyExchangeReq, String userId) {
     String name = currencyExchangeReq.getCurrencyFrom() + "-" + currencyExchangeReq.getCurrencyTo();
     // Check currency exchange already exist
     Optional<CurrencyExchange> currencyExchangeOptional = currencyExchangeRepository.findByName(name);
@@ -37,7 +38,8 @@ public class CurrencyExchangeServiceImpl implements CurrencyExchangeService {
     CurrencyExchange currencyExchange = new CurrencyExchange()
         .setName(name.toUpperCase())
         .setDescription(currencyExchangeReq.getDescription())
-        .setRate(currencyExchangeReq.getRate());
+        .setRate(currencyExchangeReq.getRate())
+        .setCreatedById(userId);
 
     return currencyExchangeRepository.insert(currencyExchange);
   }
@@ -77,5 +79,10 @@ public class CurrencyExchangeServiceImpl implements CurrencyExchangeService {
         .setRate(currencyExchange.getRate());
 
     return exchangeRateDto;
+  }
+
+  @Override
+  public List<CurrencyExchange> getList() {
+    return currencyExchangeRepository.findAll();
   }
 }
