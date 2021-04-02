@@ -1,7 +1,6 @@
 package com.agility.currencyconversionservice.service;
 
 import com.agility.currencyconversionservice.dto.CurrencyConversionDto;
-import com.agility.currencyconversionservice.exception.CurrencyConversionException;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,5 +13,5 @@ public interface CurrencyExchangeServiceProxy {
   CurrencyConversionDto getCurrencyExchangeRate(
       @PathVariable("from") @NotNull String from,
       @PathVariable("to") @NotNull String to
-  ) throws CurrencyConversionException.NotFoundException;
+  );
 }

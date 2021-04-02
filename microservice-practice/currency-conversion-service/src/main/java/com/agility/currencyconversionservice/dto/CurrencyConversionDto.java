@@ -11,4 +11,5 @@ public class CurrencyConversionDto {
   private double rate;
   private double quantity;
   private double totalPrice;
+  private int usedPort;
 }

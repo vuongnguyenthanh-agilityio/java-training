@@ -9,6 +9,7 @@ import com.agility.currencyexchangeservice.util.ExceptionTypeEnum;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +24,8 @@ import java.util.List;
 public class CurrencyExchangeController {
   private final Logger LOG = LoggerFactory.getLogger(getClass());
   private final CurrencyExchangeService currencyExchangeService;
+  @Value("${server.port}")
+  private int port;
 
   @PostMapping("/currency-exchange")
   public ResponseEntity<CurrencyExchange> createCurrencyExchange(
@@ -86,6 +89,7 @@ public class CurrencyExchangeController {
       throw CurrencyExchangeException.throwException(ExceptionTypeEnum.BAD_REQUEST, "Currency 'to' is required.");
     }
     ExchangeRateDto exchangeRateDto = currencyExchangeService.getExchangeRate(from.toUpperCase(), to.toUpperCase());
+    exchangeRateDto.setUsedPort(port);
 
     return new ResponseEntity<>(exchangeRateDto, HttpStatus.OK);
   }

@@ -10,4 +10,5 @@ public class ExchangeRateDto {
   private String from;
   private String to;
   private double rate;
+  private int usedPort;
 }
