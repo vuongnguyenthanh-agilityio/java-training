@@ -1,0 +1,157 @@
+version: '3.5'
+services:
+  mongodb:
+    image: mongo:latest
+    restart: always
+    container_name: "mongodb"
+    environment:
+      - MONGO_DATA_DIR=/db/data
+      - MONGO_LOG_DIR=/dev/null
+    volumes:
+      - ./db/data:/data/db
+    ports:
+      - 27017:27017
+    networks:
+      - spring-cloud-network
+    command: mongod --bind_ip_all --logpath=/dev/null # --quiet
+
+  # Config service
+  config-service:
+    container_name: config-service
+    build:
+      context: config-service
+      dockerfile: Dockerfile
+    image: config-service:latest
+    working_dir: /app/config-service
+    volumes:
+      - ./config-service:/app/config-service
+      - ./git-local-config:/app/git-local-config
+      - ~/.m2:/root/.m2
+    restart: on-failure
+    ports:
+      - "8888:8888"
+    networks:
+      - spring-cloud-network
+    command: mvn clean spring-boot:run
+
+  # Discovery service
+  discovery-service:
+    container_name: discovery-service
+    build:
+      context: discovery-service
+      dockerfile: Dockerfile
+    image: discovery-service:latest
+    working_dir: /app/discovery-service
+    volumes:
+      - ./discovery-service:/app/discovery-service
+      - ~/.m2:/root/.m2
+    restart: on-failure
+    ports:
+      - "8761:8761"
+    networks:
+      - spring-cloud-network
+    command: mvn clean spring-boot:run
+
+  # Oauth-service
+  oauth-service:
+    container_name: oauth-service
+    build:
+      context: oauth-service
+      dockerfile: Dockerfile
+    image: oauth-service:latest
+    volumes:
+      - ./oauth-service:/app/
+      - ~/.m2:/root/.m2
+    restart: on-failure
+    ports:
+      - "3000:3000"
+    links:
+      - mongodb
+      - config-service
+    depends_on:
+      - mongodb
+      - config-service
+    environment:
+      - WAIT_HOSTS=config-service:8888
+      - CONFIG_SERVER=http://config-service:8888
+      - EUREKA_SERVER=http://discovery-service:8761/eureka
+      - MONGODB_HOST=mongodb
+    networks:
+      - spring-cloud-network
+
+  # Currency-exchange-service
+  currency-exchange-service:
+    container_name: currency-exchange-service
+    build:
+      context: currency-exchange-service
+      dockerfile: Dockerfile
+    image: currency-exchange-service:latest
+    volumes:
+      - ./currency-exchange-service:/app/
+      - ~/.m2:/root/.m2
+    restart: on-failure
+    ports:
+      - "9000:9000"
+    depends_on:
+      - mongodb
+      - config-service
+      - discovery-service
+    environment:
+      - WAIT_HOSTS=config-service:8888
+      - CONFIG_SERVER=http://config-service:8888
+      - EUREKA_SERVER=http://discovery-service:8761/eureka
+      - MONGODB_HOST=mongodb
+    networks:
+      - spring-cloud-network
+  
+  # Currency-conversion-service
+  currency-conversion-service:
+    container_name: currency-conversion-service
+    build:
+      context: currency-conversion-service
+      dockerfile: Dockerfile
+    image: currency-conversion-service:latest
+    volumes:
+      - ./currency-conversion-service:/app/
+      - ~/.m2:/root/.m2
+    restart: on-failure
+    ports:
+      - "5000:5000"
+    depends_on:
+      - config-service
+      - discovery-service
+      - currency-exchange-service
+    environment:
+      - WAIT_HOSTS=config-service:8888
+      - CONFIG_SERVER=http://config-service:8888
+      - EUREKA_SERVER=http://discovery-service:8761/eureka
+    networks:
+      - spring-cloud-network
+
+  # Api-gateway
+  api-gateway:
+    container_name: api-gateway
+    build:
+      context: api-gateway
+      dockerfile: Dockerfile
+    image: api-gateway:latest
+    volumes:
+      - ./api-gateway:/app/
+      - ~/.m2:/root/.m2
+    restart: on-failure
+    ports:
+      - "8080:8080"
+    depends_on:
+      - config-service
+      - discovery-service
+      - currency-exchange-service
+      - currency-conversion-service
+    environment:
+      - WAIT_HOSTS=config-service:8888
+      - CONFIG_SERVER=http://config-service:8888
+      - EUREKA_SERVER=http://discovery-service:8761/eureka
+    networks:
+      - spring-cloud-network
+networks:
+  spring-cloud-network:
+      driver: bridge

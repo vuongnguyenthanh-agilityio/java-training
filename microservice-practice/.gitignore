@@ -1,0 +1,7 @@
+HELP.md
+target/
+db/data/*
+
+### VS Code ###
+.vscode/
+.idea
