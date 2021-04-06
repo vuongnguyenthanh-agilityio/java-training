@@ -16,10 +16,13 @@
     - `unzip git-local-config.zip`
     - `docker-compose up --build`
 
+## Architecture diagrams
+:::image type="content" source="architecture-diagrams.png" alt-text="Architecture diagrams":::
+
 ## API Endpoint
 - POST: /v1/api/auth
 ```rest
-http://localhost:3000/v1/api/auth
+http://localhost:8080/v1/api/auth
 ```
 ```json
 {
