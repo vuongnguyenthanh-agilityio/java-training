@@ -101,9 +101,36 @@ services:
       - CONFIG_SERVER=http://config-service:8888
       - EUREKA_SERVER=http://discovery-service:8761/eureka
       - MONGODB_HOST=mongodb
+      - PORT=9000
     networks:
       - spring-cloud-network
-  
+
+  # Currency-exchange-service
+  currency-exchange-service:
+    container_name: currency-exchange-service
+    build:
+      context: currency-exchange-service
+      dockerfile: Dockerfile
+    image: currency-exchange-service:latest
+    volumes:
+      - ./currency-exchange-service:/app/
+      - ~/.m2:/root/.m2
+    restart: on-failure
+    ports:
+      - "9100:9100"
+    depends_on:
+      - mongodb
+      - config-service
+      - discovery-service
+    environment:
+      - WAIT_HOSTS=config-service:8888,discovery-service:8761
+      - CONFIG_SERVER=http://config-service:8888
+      - EUREKA_SERVER=http://discovery-service:8761/eureka
+      - MONGODB_HOST=mongodb
+      - PORT=9100
+    networks:
+      - spring-cloud-network
+
   # Currency-conversion-service
   currency-conversion-service:
     container_name: currency-conversion-service

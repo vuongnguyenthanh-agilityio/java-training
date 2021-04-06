@@ -25,7 +25,9 @@ public class SpringCloudConfig {
             .uri("lb://currency-exchange-service")
         )
         .route(r -> r.path("/v1/api/currency-conversion/**")
-          .uri("lb://currency-conversion-service"))
+            .uri("lb://currency-conversion-service"))
+        .route(r -> r.path("/v1/api/auth/**")
+            .uri("lb://oauth-service"))
         .build();
   }
 

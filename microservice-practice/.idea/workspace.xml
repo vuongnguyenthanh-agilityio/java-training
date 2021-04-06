@@ -8,12 +8,19 @@
       <change afterPath="$PROJECT_DIR$/git-local-config/api-gateway.properties" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/git-local-config/currency-conversion-service.properties" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/git-local-config/git-local-config.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/java/com/agility/apigateway/config/SpringCloudConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/java/com/agility/apigateway/config/SpringCloudConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/currency-exchange-service/src/main/resources/bootstrap.properties" beforeDir="false" afterPath="$PROJECT_DIR$/currency-exchange-service/src/main/resources/bootstrap.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/git-local-config/currency-exchange-service-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/git-local-config/currency-exchange-service-dev.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/git-local-config/currency-exchange-service-prod.properties" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/git-local-config/currency-exchange-service.properties" beforeDir="false" afterPath="$PROJECT_DIR$/git-local-config/currency-exchange-service.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/git-local-config/security-config-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/git-local-config/oauth-service-dev.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/git-local-config/security-config-prod.properties" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/git-local-config/security-config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/git-local-config/oauth-service.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oauth-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/oauth-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oauth-service/src/main/java/com/agility/oauthservice/OauthServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/oauth-service/src/main/java/com/agility/oauthservice/OauthServiceApplication.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

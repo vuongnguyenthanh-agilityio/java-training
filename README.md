@@ -13,6 +13,7 @@
   * Install Docker : You must install Docker in your machine.
   * Run
     - `cd java-training/microservice-practice/`
+    - `unzip git-local-config.zip`
     - `docker-compose up --build`
 
 ## API Endpoint
