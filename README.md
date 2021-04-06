@@ -47,7 +47,7 @@ http://localhost:8080/v1/api/currency-exchange
     "rate": 17000
   }
 ```
-- PUT: /api/products/{id} (Only ADMIN role)
+- PUT: /v1/api/currency-exchange/{id} (Only ADMIN role)
 ```rest
 http://localhost:8080/v1/api/currency-exchange/606bc68d442a0860d6a332f6
 ```
