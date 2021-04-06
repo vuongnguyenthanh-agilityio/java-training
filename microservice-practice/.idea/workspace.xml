@@ -8,17 +8,20 @@
       <change afterPath="$PROJECT_DIR$/git-local-config/api-gateway.properties" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/git-local-config/currency-conversion-service.properties" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/git-local-config/git-local-config.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oauth-service/src/main/java/com/agility/oauthservice/repository/InitializeDatabase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oauth-service/src/main/java/com/agility/oauthservice/repository/RoleRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api-gateway/src/main/resources/bootstrap.properties" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/resources/bootstrap.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/config-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/currency-conversion-service/src/main/resources/bootstrap.properties" beforeDir="false" afterPath="$PROJECT_DIR$/currency-conversion-service/src/main/resources/bootstrap.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/currency-exchange-service/src/main/resources/bootstrap.properties" beforeDir="false" afterPath="$PROJECT_DIR$/currency-exchange-service/src/main/resources/bootstrap.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/discovery-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/git-local-config/currency-exchange-service-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/git-local-config/currency-exchange-service-dev.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/git-local-config/currency-exchange-service-prod.properties" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/git-local-config/currency-exchange-service.properties" beforeDir="false" afterPath="$PROJECT_DIR$/git-local-config/currency-exchange-service.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/git-local-config/security-config-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/git-local-config/oauth-service-dev.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/git-local-config/security-config-prod.properties" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/git-local-config/security-config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/git-local-config/oauth-service.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oauth-service/src/main/java/com/agility/oauthservice/OauthServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/oauth-service/src/main/java/com/agility/oauthservice/OauthServiceApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/oauth-service/src/main/resources/bootstrap.properties" beforeDir="false" afterPath="$PROJECT_DIR$/oauth-service/src/main/resources/bootstrap.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -33,8 +36,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
