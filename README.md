@@ -17,7 +17,8 @@
     - `docker-compose up --build`
 
 ## Architecture diagrams
-:::image type="content" source="architecture-diagrams.png" alt-text="Architecture diagrams":::
+![alt text for screen readers](./architecture-diagrams.png "Architecture diagrams").
+
 
 ## API Endpoint
 - POST: /v1/api/auth
