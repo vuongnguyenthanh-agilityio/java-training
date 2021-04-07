@@ -5,9 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6285f748-7ae2-4e97-8fcc-869197378953" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/git-local-config" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/git-local-config/api-gateway.properties" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/git-local-config/currency-conversion-service.properties" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/git-local-config/git-local-config.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/java/com/agility/apigateway/config/SpringCloudConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/java/com/agility/apigateway/config/SpringCloudConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/java/com/agility/apigateway/exception/TokenException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/java/com/agility/apigateway/exception/UnauthorizedException.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/java/com/agility/apigateway/exception/UnauthorizedException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/java/com/agility/apigateway/filter/AuthorizationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/java/com/agility/apigateway/filter/AuthorizationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/config-service/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/config-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/config-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/currency-conversion-service/src/main/java/com/agility/currencyconversionservice/exception/CustomResponseException.java" beforeDir="false" afterPath="$PROJECT_DIR$/currency-conversion-service/src/main/java/com/agility/currencyconversionservice/exception/CustomResponseException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/discovery-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-service/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/discovery-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/git-local-config/currency-exchange-service-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/git-local-config/currency-exchange-service-dev.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/git-local-config/currency-exchange-service-prod.properties" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/git-local-config/currency-exchange-service.properties" beforeDir="false" afterPath="$PROJECT_DIR$/git-local-config/currency-exchange-service.properties" afterDir="false" />
@@ -215,18 +229,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/api-gateway/src/main/java/com/agility/apigateway/filter/AuthorizationFilter.java</url>
-          <line>42</line>
+          <line>35</line>
           <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/api-gateway/src/main/java/com/agility/apigateway/exception/UnauthorizedException.java</url>
-          <line>17</line>
+          <line>29</line>
           <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/api-gateway/src/main/java/com/agility/apigateway/exception/TokenException.java</url>
-          <line>17</line>
-          <option name="timeStamp" value="26" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

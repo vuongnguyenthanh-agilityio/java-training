@@ -9,10 +9,22 @@ import reactor.core.publisher.Mono;
 
 import java.nio.charset.StandardCharsets;
 
+/**
+ * Create by Vuong Nguyen
+ *
+ * This class help update response error when authorization filter
+ */
 public class UnauthorizedException extends RuntimeException implements ErrorWebExceptionHandler {
   private HttpStatus status = HttpStatus.UNAUTHORIZED;
   private String message = "Unauthorized";
 
+  /**
+   * Handle response message when unauthorized
+   *
+   * @param exchange
+   * @param throwable
+   * @return
+   */
   @Override
   public Mono<Void> handle(ServerWebExchange exchange, Throwable throwable) {
     byte[] bytes = message.getBytes(StandardCharsets.UTF_8);

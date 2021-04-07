@@ -1,6 +1,5 @@
 package com.agility.currencyconversionservice.exception;
 
-import com.agility.currencyconversionservice.util.ExceptionTypeEnum;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -16,7 +15,6 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import javax.servlet.http.HttpServletResponse;
-import java.nio.ByteBuffer;
 import java.util.Date;
 
 @ControllerAdvice

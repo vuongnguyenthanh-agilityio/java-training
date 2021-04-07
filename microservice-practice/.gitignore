@@ -3,5 +3,6 @@ target/
 db/data/*
 
 ### VS Code ###
-.vscode/
-.idea
+.vscode/*
+.idea/*
+git-local-config/*

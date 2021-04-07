@@ -22,17 +22,17 @@ services:
       context: config-service
       dockerfile: Dockerfile
     image: config-service:latest
-    working_dir: /app/config-service
     volumes:
-      - ./config-service:/app/config-service
+      - ./config-service:/app/
       - ./git-local-config:/app/git-local-config
       - ~/.m2:/root/.m2
     restart: on-failure
+    environment:
+      - GIT_URI=file:///app/git-local-config
     ports:
       - "8888:8888"
     networks:
       - spring-cloud-network
-    command: mvn clean spring-boot:run
 
   # Discovery service
   discovery-service:
@@ -41,16 +41,14 @@ services:
       context: discovery-service
       dockerfile: Dockerfile
     image: discovery-service:latest
-    working_dir: /app/discovery-service
     volumes:
-      - ./discovery-service:/app/discovery-service
+      - ./discovery-service:/app/
       - ~/.m2:/root/.m2
     restart: on-failure
     ports:
       - "8761:8761"
     networks:
       - spring-cloud-network
-    command: mvn clean spring-boot:run
 
   # Oauth-service
   oauth-service:
@@ -106,8 +104,8 @@ services:
       - spring-cloud-network
 
   # Currency-exchange-service
-  currency-exchange-service:
-    container_name: currency-exchange-service
+  currency-exchange-service-two:
+    container_name: currency-exchange-service-two
     build:
       context: currency-exchange-service
       dockerfile: Dockerfile
